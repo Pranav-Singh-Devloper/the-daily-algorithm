@@ -22,6 +22,14 @@ const Metric = ({ children }) => (
 
 export default function Projects() {
   const [lead, ...rest] = PROJECTS;
+  const [leadName, leadSub = ""] = lead.title.split(": ");
+  const subWords = leadSub.split(" ");
+  const leadLines = [
+    `${leadName}:`,
+    ...Array.from({ length: Math.ceil(subWords.length / 3) }, (_, i) =>
+      subWords.slice(i * 3, i * 3 + 3).join(" ")
+    ),
+  ];
   return (
     <section id="features" className="relative z-10 px-4 sm:px-8 py-12 sm:py-20" data-testid="projects-section">
       <div className="max-w-6xl mx-auto">
@@ -42,7 +50,7 @@ export default function Projects() {
             </Reveal>
             <MaskedLines
               as="h3"
-              lines={["Project NeuroStream:", "Real-Time Speculative", "Decoding Engine"]}
+              lines={leadLines}
               className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl leading-[1.05] tracking-tight mt-3"
               delay={0.1}
             />

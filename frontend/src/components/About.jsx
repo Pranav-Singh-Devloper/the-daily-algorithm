@@ -19,7 +19,7 @@ export default function About() {
         <MaskedLines
           lines={[
             "ASPIRING AI ENGINEER",
-            "SEEKS 2026 INTERNSHIP IN",
+            "SEEKS INTERNSHIP IN",
             "MACHINE LEARNING",
           ]}
           className="font-heading font-black leading-[1.02] tracking-tight text-3xl sm:text-5xl lg:text-6xl mt-3"

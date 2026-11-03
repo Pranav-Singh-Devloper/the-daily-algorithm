@@ -3,9 +3,9 @@ import { MaskedLines, Reveal, SectionHeading } from "@/components/Reveal";
 
 const LINKS = [
   { label: "Email", value: PERSON.email, href: `mailto:${PERSON.email}`, id: "email-link" },
-  { label: "GitHub", value: "github.com/asterling-ai", href: PERSON.github, id: "github-profile-link" },
-  { label: "LinkedIn", value: "linkedin.com/in/alexander-sterling-ai", href: PERSON.linkedin, id: "linkedin-profile-link" },
-  { label: "Scholar", value: "scholar.google.com · asterling", href: PERSON.scholar, id: "scholar-profile-link" },
+  { label: "Telegram", value: PERSON.phone, href: `tel:${PERSON.phone.replace(/\s/g, "")}`, id: "phone-link" },
+  { label: "GitHub", value: "github.com/pranav — link on request", href: PERSON.github, id: "github-profile-link" },
+  { label: "LinkedIn", value: "linkedin.com/in/pranav — link on request", href: PERSON.linkedin, id: "linkedin-profile-link" },
 ];
 
 export default function Contact() {
@@ -55,7 +55,7 @@ export default function Contact() {
                 <span className="font-kicker font-bold uppercase tracking-[0.2em] text-[10px] block mb-1.5">
                   Subject / Internship Inquiry
                 </span>
-                <input name="subject" data-testid="letter-subject-input" className={field} placeholder="e.g. Summer 2026 ML Internship" />
+                <input name="subject" data-testid="letter-subject-input" className={field} placeholder="e.g. AI/ML Internship Inquiry" />
               </label>
               <label className="block mb-6">
                 <span className="font-kicker font-bold uppercase tracking-[0.2em] text-[10px] block mb-1.5">
@@ -92,15 +92,15 @@ export default function Contact() {
                 <Reveal key={l.label} delay={0.1 + i * 0.08}>
                   <a
                     href={l.href}
-                    target={l.href.startsWith("mailto") ? undefined : "_blank"}
+                    target={l.href.startsWith("mailto") || l.href.startsWith("tel") || l.href === "#" ? undefined : "_blank"}
                     rel="noreferrer"
                     data-testid={l.id}
-                    className="flex items-center justify-between px-4 py-3.5 hover:bg-[#121212] hover:text-[#F9F7F1] transition-colors duration-200 group"
+                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-[#121212] hover:text-[#F9F7F1] transition-colors duration-200 group"
                   >
                     <span className="font-kicker font-bold uppercase tracking-[0.2em] text-[11px]">
                       {l.label}
                     </span>
-                    <span className="font-mono-np text-[10px] sm:text-[11px] tracking-wide">
+                    <span className="font-mono-np text-[10px] sm:text-[11px] tracking-wide text-right">
                       {l.value}
                     </span>
                   </a>

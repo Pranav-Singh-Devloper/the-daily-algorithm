@@ -1,23 +1,23 @@
 export const PERSON = {
-  name: "Alexander Sterling",
-  shortName: "A. Sterling",
+  name: "Pranav Singh",
+  shortName: "P. Singh",
   role: "Student · Aspiring AI/ML Engineer",
-  school: "Department of Computer Science & AI, Stanford University",
-  email: "alexander.sterling@stanford.edu",
-  github: "https://github.com/asterling-ai",
-  linkedin: "https://linkedin.com/in/alexander-sterling-ai",
-  scholar: "https://scholar.google.com/citations?user=asterling",
+  school: "Newton School of Technology, Rishihood University — B.Tech CS & AI, Class of 2028",
+  email: "pranav.singh2024@nst.rishihood.edu.in",
+  phone: "+91 7063992027",
+  github: "#",
+  linkedin: "#",
   portrait:
     "https://images.unsplash.com/photo-1684607776189-24a70a10a804?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200",
 };
 
 export const TICKER_ITEMS = [
   "EXTRA! EXTRA! READ ALL ABOUT IT",
-  "AI/ML STUDENT ENGINEER SEEKS SUMMER 2026 INTERNSHIP",
-  "EXCEL IN PYTORCH, RAG & DEEP LEARNING",
-  "LATE EDITION — HOT OFF THE GRADIENT DESCENT PRESS",
-  "TOP OF THE BENCHMARK LEADERBOARD",
-  "NO STORY TOO SMALL, NO TENSOR TOO LARGE",
+  "AI/ML STUDENT ENGINEER SEEKS INTERNSHIP IN ML, GENAI & DEEP LEARNING",
+  "ARCHITECTED A 19-AGENT MEDICAL AI SYSTEM IN LANGGRAPH",
+  "WINNER — DECODE 2025 HACKATHON",
+  "PRODUCTION RAG ON GROQ, AWS BEDROCK & GEMINI",
+  "250+ PROBLEMS SOLVED — NO TENSOR TOO LARGE",
 ];
 
 export const NAV_LINKS = [
@@ -30,97 +30,89 @@ export const NAV_LINKS = [
 ];
 
 export const AT_A_GLANCE = [
-  ["FIELD", "Machine Learning · Generative AI · Deep Learning"],
-  ["DEGREE", "B.S. Computer Science & AI, Class of 2026"],
-  ["FOCUS", "LLM systems, retrieval, efficient inference"],
-  ["STATUS", "OPEN TO SUMMER 2026 INTERNSHIPS"],
+  ["FIELD", "LLM Engineering · Multi-Agent Systems · RAG"],
+  ["DEGREE", "B.Tech CS & AI, Newton School of Technology, 2024–2028"],
+  ["PROOF OF WORK", "19-agent medical AI system · production RAG · 250+ problems solved"],
+  ["STATUS", "OPEN TO AI/ML & GENAI INTERNSHIPS"],
 ];
 
 export const EXPERIENCES = [
   {
-    role: "AI Research Assistant",
-    org: "Stanford AI Lab (SAIL)",
-    period: "SEPT 2025 — PRESENT",
-    location: "PALO ALTO, CA",
+    role: "LLM Engineering Intern",
+    org: "Slay Health, Delhi",
+    period: "MAY 2026 — PRESENT",
+    location: "DELHI",
     summary:
-      "Pioneered context-window optimisation for long-form transformer inference. Co-authored a paper accepted at a NeurIPS workshop; reduced KV-cache memory overhead by 34% using custom CUDA kernels.",
+      "Architected a hierarchical 19-agent medical AI system in LangGraph with fan-out/fan-in orchestration and CoT/ToT reasoning. Built production RAG pipelines with hybrid BGE + BM25 retrieval fused via Reciprocal Rank Fusion; integrated Groq, OpenRouter, AWS Bedrock and Gemini via FastAPI; ran MedGemma VLM locally via 4-bit quantization; and shipped a WhatsApp RAG chatbot on Supabase + pgvector at ~300ms time-to-first-token.",
   },
   {
-    role: "Machine Learning Intern",
-    org: "Vector Research Labs",
-    period: "JUNE 2025 — AUG 2025",
-    location: "SAN FRANCISCO, CA",
-    summary:
-      "Engineered a multi-modal retrieval pipeline serving 500k daily queries. Implemented hybrid dense–sparse vector search with Qdrant and SentenceTransformers, lifting MRR@10 by 18.5%.",
-  },
-  {
-    role: "Lead Computer Vision Fellow",
-    org: "Open Source AI Collective",
-    period: "JAN 2025 — MAY 2025",
+    role: "AI/ML Development Intern",
+    org: "The MA Studio",
+    period: "MAY 2025 — JULY 2025",
     location: "REMOTE",
     summary:
-      "Built real-time edge-detection and segmentation models optimised for TensorRT deployment on embedded micro-controllers, shipping inference at under 20ms per frame.",
+      "Architected a hybrid retrieval system using MongoDB Atlas Search and BM25 to significantly improve context retrieval across LLM-powered workflows. Built asynchronous FastAPI REST APIs on OpenRouter and Together AI, restructured database schemas and migrations, secured endpoints with Supabase Auth and JWT, and supported deployment on Railway and Vercel.",
   },
 ];
 
 export const PROJECTS = [
   {
-    title: "Project NeuroStream: Real-Time Speculative Decoding Engine",
-    category: "FEATURE ARTICLE · LLM INFERENCE",
+    title: "Engram: Persistent Memory Engine for AI Agents",
+    category: "FEATURE ARTICLE · AGENTIC MEMORY",
     summary:
-      "A high-throughput speculative decoding framework built with PyTorch and C++ CUDA extensions, achieving a 2.8x speedup on Llama-3 70B inference while preserving output fidelity. Drafter and verifier models run in a pipelined KV-cache regime designed for production serving stacks.",
+      "A long-term memory engine for AI agents in TypeScript on Postgres plus pgvector, storing facts as immutable bitemporal versions with rule-first conflict resolution and an LLM-based adjudication layer, exposed through 6 MCP tools over stdio and HTTP. Hybrid recall combines fact and episode vectors, full-text search and entity-graph hops, fused via Reciprocal Rank Fusion, with reversible decay and nightly consolidation.",
     image:
       "https://images.unsplash.com/photo-1664854953181-b12e6dda8b7c?crop=entropy&cs=srgb&fm=jpg&q=80&w=1600",
-    tags: ["PyTorch", "CUDA", "LLMs", "Speculative Decoding", "C++"],
-    metrics: "2.8x Latency Reduction · 99.4% Output Fidelity",
+    tags: ["TypeScript", "PostgreSQL", "pgvector", "MCP", "RRF"],
+    metrics: "45% LongMemEval-S · 640 Tests · 6 MCP Tools",
     featured: true,
   },
   {
-    title: "GraphRAG-Enterprise: Knowledge-Graph Augmented Generation",
-    category: "INVESTIGATIVE DISPATCH · RAG SYSTEMS",
+    title: "Nexus: Autonomous Market Intelligence",
+    category: "INVESTIGATIVE DISPATCH · AGENTIC SAAS",
     summary:
-      "A hybrid entity-extraction and graph-embedding pipeline connecting Neo4j with LangChain for complex multi-hop reasoning over technical documents.",
+      "An agentic market intelligence platform implementing a Plan-Search-Critique workflow that combines hybrid vector search with self-correcting research logic, built as microservices with dual Google/JWT authentication for a production-style AI SaaS product.",
     image:
       "https://images.unsplash.com/photo-1573528839587-71883908b252?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200",
-    tags: ["Python", "Neo4j", "LangChain", "Qdrant", "FastAPI"],
-    metrics: "89.2% Retrieval Accuracy · Multi-Hop Q&A",
+    tags: ["LangGraph", "Llama 3.3", "Groq", "Tavily", "Neon pgvector"],
+    metrics: "React · Node.js · FastAPI · Dual Auth",
   },
   {
-    title: "Whisper-SubEdge: Lightweight On-Device Speech Recognition",
-    category: "SPECIAL REPORT · EDGE ML",
+    title: "Movie Sentiment Analyser",
+    category: "SPECIAL REPORT · DEEP LEARNING",
     summary:
-      "A quantised 8-bit Whisper transformer running seamlessly on WebAssembly and Apple Silicon via CoreML — speech-to-text where the cloud cannot follow.",
+      "An end-to-end IMDb sentiment analysis app in TensorFlow 2.15 and Keras, using Text Vectorization, Embedding and GlobalAveragePooling1D layers over TensorFlow Datasets, with live confidence charts in Streamlit.",
     image:
       "https://images.unsplash.com/photo-1647003439039-d90d730f2773?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200",
-    tags: ["CoreML", "ONNX", "WebAssembly", "C++", "Whisper"],
-    metrics: "14MB Binary · <45ms Real-Time Latency",
+    tags: ["TensorFlow", "Keras", "Streamlit", "TF Datasets"],
+    metrics: "~88% Test Accuracy · Live Confidence Charts",
   },
 ];
 
 export const ACHIEVEMENTS = [
-  ["1ST PLACE — STANFORD AI HACKATHON 2025", "Out of 120 teams; built a live multi-agent research assistant in 36 hours."],
-  ["NEURIPS WORKSHOP CO-AUTHOR", "\u201CEfficient Context Distillation in LLMs\u201D — accepted, 2025."],
-  ["DEAN'S HONOUR LIST", "Stanford School of Engineering, 2023–2026, every quarter to date."],
-  ["NSF UNDERGRADUATE RESEARCH SCHOLAR", "National Science Foundation funded research stipend."],
+  ["WINNER — DECODE 2025 HACKATHON", "Built an optimised search algorithm for querying open-source GitHub repositories."],
+  ["REPRESENTED HARYANA — NATIONAL YOUTH FESTIVAL", "Top 3,000 of 30 lakh; pitched a data-analytics solution for agri-climate resilience."],
+  ["RUNNER-UP — VISUAL VORTEX HACKATHON (GDG)", "High-fidelity Figma pet-adoption prototype; Secretary, GDG, Rishihood University."],
+  ["UC SAN DIEGO — DATA STRUCTURES CERTIFIED", "Plus SCALER C++ Essentials certification, 2024."],
 ];
 
 export const SKILLS = [
   {
-    category: "Core Frameworks & Architectures",
-    skills: ["PyTorch", "TensorFlow", "Transformers (HuggingFace)", "vLLM", "DeepSpeed", "LangChain", "LlamaIndex"],
+    category: "AI/ML & LLM Stack",
+    skills: ["LangGraph", "LangChain", "RAG · MCP", "Multi-Agent Systems", "Hugging Face", "TensorFlow / Keras", "PyTorch", "Generative AI"],
   },
   {
-    category: "Languages & Systems",
-    skills: ["Python (Advanced)", "C++ / CUDA", "SQL", "TypeScript / React", "Linux / Bash", "Git / Docker"],
+    category: "Languages & Frameworks",
+    skills: ["Python", "C++", "TypeScript / JavaScript", "SQL", "FastAPI", "React / Next.js", "Node.js", "Tailwind CSS"],
   },
   {
-    category: "Vector & Data Infrastructure",
-    skills: ["Qdrant", "Pinecone", "Neo4j", "PostgreSQL (pgvector)", "Redis", "Ray Distributed"],
+    category: "Platforms, Data & Cloud",
+    skills: ["Gemini / OpenAI APIs", "Groq / OpenRouter", "AWS Bedrock", "PostgreSQL / pgvector", "Supabase / MongoDB", "n8n", "Railway / Vercel", "Git & GitHub"],
   },
 ];
 
 export const ABOUT_BODY = [
-  "There is a moment, somewhere between the loss curve finally flattening and the eval set finally breaking, when an engineer knows the model is going to ship. This correspondent has been chasing that moment across classrooms, laboratories and hackathon floors for the better part of three years.",
-  "A student of Computer Science and Artificial Intelligence, this paper's subject specialises in Large Language Models, Generative AI and distributed model training — combining deep theoretical foundations in optimisation and probability with hands-on proficiency in PyTorch, CUDA and modern RAG architectures. The work ranges from squeezing KV-caches into submission to building retrieval pipelines that answer before you finish asking.",
-  "The stated ambition, printed here for the record: to join an AI firm where the models are ambitious, the benchmarks are honest, and the interns are trusted with real GPUs. Readers with positions to fill are invited to turn to the Letters column.",
+  "There is a moment, somewhere between the loss curve finally flattening and the eval set finally breaking, when an engineer knows the model is going to ship. This correspondent has been chasing that moment across startup war-rooms, hackathon floors and late-night terminal sessions.",
+  "A Computer Science & Artificial Intelligence undergraduate at Newton School of Technology, Rishihood University (Class of 2028), this paper's subject specialises in LLM engineering, multi-agent systems and Retrieval-Augmented Generation — architecting a 19-agent medical AI system in LangGraph, shipping production RAG pipelines across Groq, AWS Bedrock and Gemini, and holding a competitive-programming foundation of 250+ solved problems.",
+  "The stated ambition, printed here for the record: to join an AI firm where the agents are ambitious, the benchmarks are honest, and the interns ship to production. Readers with positions to fill are invited to turn to the Letters column.",
 ];
