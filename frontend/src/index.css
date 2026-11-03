@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f9f7f1;
+  --paper-2: #f3efe6;
+  --ink: #121212;
+  --ink-2: #242424;
+  --ink-muted: #5a5a5a;
+  --rule-light: #d2cec4;
+
+  --background: 45 33% 96%;
+  --foreground: 0 0% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 7%;
+  --primary: 0 0% 7%;
+  --primary-foreground: 45 33% 96%;
+  --secondary: 45 25% 92%;
+  --secondary-foreground: 0 0% 7%;
+  --muted: 45 25% 92%;
+  --muted-foreground: 0 0% 35%;
+  --accent: 45 25% 92%;
+  --accent-foreground: 0 0% 7%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 7%;
+  --input: 0 0% 60%;
+  --ring: 0 0% 7%;
+  --radius: 0rem;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.font-masthead {
+  font-family: "Cinzel Decorative", "Playfair Display", Georgia, serif;
+}
+.font-heading {
+  font-family: "Playfair Display", Georgia, serif;
+}
+.font-body {
+  font-family: "Newsreader", "Times New Roman", serif;
+}
+.font-kicker {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+}
+.font-mono-np {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+}
+
+/* ---- Newspaper printing effects ---- */
+.halftone {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+.halftone img {
+  filter: grayscale(1) contrast(1.08) brightness(1.02);
+  mix-blend-mode: multiply;
+  display: block;
+}
+.halftone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(18, 18, 18, 0.32) 0.6px, transparent 1.1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.rule-double {
+  border-top: 1px solid var(--ink);
+  box-shadow: 0 3px 0 -2px var(--ink), 0 5px 0 -4px var(--ink);
+  height: 5px;
+}
+
+.dropcap::first-letter {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.82;
+  padding-right: 0.1em;
+  padding-top: 0.05em;
+}
+
+.justify-editorial {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ---- Marquee ticker ---- */
+@keyframes np-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.np-ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: np-ticker 48s linear infinite;
+  will-change: transform;
+}
+
+/* ---- Skill tickbox ---- */
+.tickbox {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid var(--ink);
+  margin-right: 0.55em;
+  position: relative;
+  top: 1px;
+  flex: none;
+}
+.tickbox::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: var(--ink);
+  opacity: 0.85;
+  clip-path: polygon(14% 44%, 0 62%, 42% 100%, 100% 18%, 84% 4%, 40% 68%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .np-ticker-track { animation: none; }
+}

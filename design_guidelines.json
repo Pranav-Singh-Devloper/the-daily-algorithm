@@ -1,0 +1,201 @@
+{
+  "project_title": "The Daily Algorithm — Classic Newspaper Editorial AI/ML Portfolio",
+  "art_direction": "Classic Broadsheet Newspaper Editorial",
+  "archetype": "ARCHETYPE 4: SWISS & HIGH-CONTRAST / VINTAGE EDITORIAL MONOCHROME",
+  "color_palette": {
+    "paper_bg": "#F9F7F1",
+    "paper_bg_secondary": "#F3EFE6",
+    "paper_card": "#FFFFFF",
+    "ink_black": "#121212",
+    "ink_dark": "#242424",
+    "ink_muted": "#5A5A5A",
+    "border_rule": "#121212",
+    "border_rule_light": "#D2CEC4",
+    "halftone_overlay": "rgba(18, 18, 18, 0.08)",
+    "no_accent_colors": true
+  },
+  "typography": {
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Barlow+Condensed:wght@600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap",
+    "font_families": {
+      "masthead": "'Cinzel Decorative', 'Playfair Display', serif",
+      "heading_serif": "'Playfair Display', 'Georgia', serif",
+      "body_serif": "'Newsreader', 'Times New Roman', serif",
+      "kicker_sans": "'Barlow Condensed', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "hierarchy": {
+      "masthead": "text-5xl sm:text-7xl lg:text-8xl tracking-tight uppercase font-black text-center border-b-4 border-black pb-2",
+      "h1_hero": "text-3xl sm:text-5xl lg:text-6xl font-serif font-black leading-tight tracking-tight",
+      "h2_section": "text-2xl sm:text-4xl font-serif font-bold tracking-tight uppercase border-b-2 border-black pb-1 mb-4",
+      "h3_story": "text-xl sm:text-2xl font-serif font-bold leading-snug",
+      "kicker": "text-xs sm:text-sm font-sans uppercase tracking-[0.25em] font-bold text-neutral-700 block mb-1",
+      "folio_text": "text-xs font-mono uppercase tracking-widest text-neutral-800",
+      "body_editorial": "text-base sm:text-lg font-serif leading-relaxed text-justify hyphens-auto text-neutral-900"
+    }
+  },
+  "paper_plane_scroll_engine": {
+    "concept": "A hand-drawn line-art paper plane travelling down an winding SVG dashed flight trail spanning the entire vertical height of the document, rotating dynamically along the curve using CSS offset-path or SVG tangent transform.",
+    "implementation_steps": [
+      "1. Calculate global scroll percentage using Framer Motion's useScroll() or Lenis scroll callback.",
+      "2. Render an overlay SVG container spanning position: absolute / fixed with top:0, left:0, width: 100%, height: 100%.",
+      "3. Define a smooth responsive Bézier curve path (e.g., M 100,50 C 300,400 50,800 250,1200 S 350,1800 100,2200...) that weaving through left and right margins of each section.",
+      "4. Bind motion.div (holding SVG Paper Plane icon) to offsetPath: path(...) and offsetDistance: scrollYProgress percentage.",
+      "5. Animate strokeDashoffset of the background dashed line matching scroll progress to create a growing flight trail behind the plane."
+    ]
+  },
+  "section_breakdown": [
+    {
+      "order": 1,
+      "id": "header-masthead",
+      "title": "Folio & Newspaper Masthead",
+      "newspaper_metaphor": "The Broadsheet Front Page Banner",
+      "components": [
+        "Top Date Line: Vol. CXXIV · No. 402 — CITY EDITION — WEATHER: HIGH ACCURACY, LOW LOSS",
+        "Classic Broadsheet Masthead: 'THE DAILY ALGORITHM' in Cinzel/Playfair display typography",
+        "Sub-masthead rule: Double black line border with 'EST. 2024 · SPECIAL INTERNSHIP EDITION · PRICE: ONE OFFER'",
+        "Slow Editorial Marquee Ticker: 'EXTRA! EXTRA! READ ALL ABOUT IT — AI/ML STUDENT ENGINEER SEEKS SUMMER 2026 INTERNSHIP — TOP 1% AT METRIC BENCHMARKS — EXCEL IN PYTORCH, RAG & DEEP LEARNING —'"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "about-section",
+      "title": "Front Page Headline Story (About)",
+      "newspaper_metaphor": "Lead Front Page Editorial",
+      "layout": "3-Column Broadsheet Layout (Desktop) / Single-Column Reader (Mobile)",
+      "content_details": {
+        "kicker": "FRONT PAGE SPECIAL REPORT",
+        "headline": "ASPIRING AI ENGINEER SEEKING 2026 SUMMER INTERNSHIP IN MACHINE LEARNING & DEEP ARCHITECTURES",
+        "byline": "BY SPECIAL CORRESPONDENT ALEXANDER STERLING · COMPUTER SCIENCE & AI AT STANFORD UNIVERSITY",
+        "drop_cap": "A",
+        "editorial_body": "Passionate Computer Science student specializing in Large Language Models, Generative AI, and distributed model training. Combining deep theoretical foundations in stochastic calculus and optimization with hands-on technical proficiency in PyTorch, CUDA, and modern RAG architectures.",
+        "halftone_portrait_url": "https://images.unsplash.com/photo-1684607776189-24a70a10a804?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NxA1ODR8MHwxfHNlYXJjaHwxfHxibGFjayUyMGFuZCUyMHdoaXRlJTIwcG9ydHJhaXQlMjBzdHVkZW50JTIwZW5naW5lZXJ8ZW58MHx8fHwxNzkzNzM2MTk4fDA&ixlib=rb-4.1.0&q=85",
+        "portrait_caption": "FIG 1.1 — Alexander Sterling reviewing gradient descent performance metrics in the intelligence laboratory."
+      }
+    },
+    {
+      "order": 3,
+      "id": "experience-section",
+      "title": "Dispatches from the Field (Experiences)",
+      "newspaper_metaphor": "Classified Ads & Special Field Reports",
+      "layout": "Classified Grid Layout with solid 1px inner column borders and vintage box headers",
+      "items": [
+        {
+          "role": "AI Research Assistant",
+          "organization": "Stanford AI Lab (SAIL)",
+          "period": "SEPT 2025 — PRESENT",
+          "location": "PALO ALTO, CA",
+          "dispatch_summary": "Pioneered context window optimization for long-form transformer inference. Co-authored paper accepted at NeurIPS workshop. Reduced KV cache memory overhead by 34% using custom CUDA kernels."
+        },
+        {
+          "role": "Machine Learning Intern",
+          "organization": "Vector Research Labs",
+          "period": "JUNE 2025 — AUG 2025",
+          "location": "SAN FRANCISCO, CA",
+          "dispatch_summary": "Engineered multi-modal retrieval pipeline serving 500k daily queries. Implemented hybrid dense-sparse vector search using Qdrant and SentenceTransformers, boosting MRR@10 by 18.5%."
+        },
+        {
+          "role": "Lead Computer Vision Fellow",
+          "organization": "Open Source AI Collective",
+          "period": "JAN 2025 — MAY 2025",
+          "location": "REMOTE",
+          "dispatch_summary": "Built real-time edge detection and segmentation models optimized for TensorRT deployment on embedded micro-controllers."
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "id": "projects-section",
+      "title": "Featured Dispatches (Projects)",
+      "newspaper_metaphor": "Sunday Feature Stories & Investigative Reports",
+      "layout": "Asymmetric Newspaper Feature Grid (2-column lead story + side column analysis)",
+      "projects": [
+        {
+          "title": "Project NeuroStream: Real-Time Speculative Decoding Engine",
+          "category": "FEATURE ARTICLE · LLM INFERENCE",
+          "summary": "High-throughput speculative decoding framework built with PyTorch & C++ CUDA extensions, achieving 2.8x speedup on Llama-3 70B inference.",
+          "image_url": "https://images.unsplash.com/photo-1664854953181-b12e6dda8b7c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY6Njl8MHwxfHNlYXJjaHwyfHxibGFjayUyMGFuZCUyMHdoaXRlJTIwbWFjaGluZSUyMGxlYXJuaW5nJTIwY29kZSUyMG5ldXJhbCUyMG5ldHdvcmslMjBsaW5lJTIwYXJ0fGVufDB8fHx8MTc5MzczNjE5OHww&ixlib=rb-4.1.0&q=85",
+          "tech_tags": ["PyTorch", "CUDA", "LLMs", "Speculative Decoding", "C++"],
+          "metrics": "2.8x Latency Reduction · 99.4% Output Fidelity"
+        },
+        {
+          "title": "GraphRAG-Enterprise: Knowledge Graph Augmented Generation",
+          "category": "INVESTIGATIVE DISPATCH · RAG SYSTEMS",
+          "summary": "Hybrid entity-extraction and graph-embedding pipeline connecting Neo4j with LangChain for complex multi-hop reasoning over technical documents.",
+          "image_url": "https://images.unsplash.com/photo-1573528839587-71883908b252?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwzfHx2aW50YWdlJTIwcGFwZXIlMjB0ZXh0dXJlJTIwaGFsZnRvbmUlMjBtYWNoaW5lJTIwbGVhcm5pbmclMjBkaWFncmFtJTIwbGluZSUyMGFydHxlbnwwfHx8fDE3OTM3MzYxOTJ8MA&ixlib=rb-4.1.0&q=85",
+          "tech_tags": ["Python", "Neo4j", "LangChain", "Qdrant", "FastAPI"],
+          "metrics": "89.2% Retrieval Accuracy on Complex Multi-Hop Q&A"
+        },
+        {
+          "title": "Whisper-SubEdge: Lightweight On-Device Speech Recognition",
+          "category": "SPECIAL REPORT · EDGE ML",
+          "summary": "Quantized 8-bit Whisper transformer model running seamlessly on WebAssembly and Apple Silicon via CoreML.",
+          "image_url": "https://images.unsplash.com/photo-1647003439039-d90d730f2773?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx2aW50YWdlJTIwcGFwZXIlMjB0ZXh0dXJlJTIwaGFsZnRvbmUlMjBtYWNoaW5lJTIwbGVhcm5pbmclMjBkaWFncmFtJTIwbGluZSUyMGFydHxlbnwwfHx8fDE3OTM3MzYxOTJ8MA&ixlib=rb-4.1.0&q=85",
+          "tech_tags": ["CoreML", "ONNX", "WebAssembly", "C++", "Whisper"],
+          "metrics": "14MB Binary Size · <45ms Real-Time Latency"
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "id": "achievements-section",
+      "title": "Honours & Distinctions (Achievements)",
+      "newspaper_metaphor": "Awards & Gazette Notice Box",
+      "layout": "Bordered Official Notice Box with Double Hairline Edges",
+      "achievements": [
+        "1ST PLACE — Stanford AI Hackathon 2025 (Out of 120 Teams)",
+        "NEURIPS WORKSHOP CO-AUTHOR — 'Efficient Context Distillation in LLMs'",
+        "DEAN'S HONOUR LIST — Stanford University School of Engineering (2023-2026)",
+        "NATIONAL SCIENCE FOUNDATION (NSF) UNDERGRADUATE RESEARCH SCHOLAR"
+      ]
+    },
+    {
+      "order": 6,
+      "id": "skills-section",
+      "title": "Tools of the Trade (Skills)",
+      "newspaper_metaphor": "The Engineer's Almanac & Laboratory Registry",
+      "layout": "Multi-column Technical Checklist with vintage tickboxes",
+      "skill_categories": [
+        {
+          "category": "Core Frameworks & Architectures",
+          "skills": ["PyTorch", "TensorFlow", "Transformers (HuggingFace)", "vLLM", "DeepSpeed", "LangChain", "LlamaIndex"]
+        },
+        {
+          "category": "Languages & Systems",
+          "skills": ["Python (Advanced)", "C++ / CUDA", "SQL", "TypeScript / React", "Linux / Bash", "Git / Docker"]
+        },
+        {
+          "category": "Vector & Data Infrastructure",
+          "skills": ["Qdrant", "Pinecone", "Neo4j", "PostgreSQL (pgvector)", "Redis", "Ray Distributed"]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "id": "contact-section",
+      "title": "Correspondence & Inquiries (Contact)",
+      "newspaper_metaphor": "Letters to the Editor & Telegram Dispatch",
+      "layout": "Editorial Letter Form styled as a classic vintage telegram / letter to the editor",
+      "contact_fields": [
+        "Sender's Name / Publication",
+        "Sender's Email Address",
+        "Subject / Internship Inquiry",
+        "Telegram Message Body"
+      ],
+      "quick_links": [
+        "EMAIL: alexander.sterling@stanford.edu",
+        "GITHUB: github.com/asterling-ai",
+        "LINKEDIN: linkedin.com/in/alexander-sterling-ai",
+        "SCHOLAR: scholar.google.com/citations?user=asterling"
+      ]
+    }
+  ],
+  "motion_and_effects": {
+    "lenis_smooth_scroll": true,
+    "framer_motion_reveals": "Line-by-line staggered text reveal for headlines, fade-and-rise opacity for column cards.",
+    "newspaper_halftone_effect": "CSS background dots radial-gradient pattern overlay on images to simulate 1920s newspaper press printing.",
+    "paper_texture_overlay": "Fixed subtle opacity noise texture overlay (pointer-events-none) across the entire body."
+  },
+  "testing_guidelines": {
+    "data_testid_convention": "All interactive elements (buttons, inputs, links, tabs, mobile menu triggers) MUST have explicit kebab-case data-testid attributes (e.g., data-testid='submit-letter-button', data-testid='github-profile-link')."
+  }
+}
