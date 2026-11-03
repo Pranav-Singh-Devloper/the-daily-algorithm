@@ -1,3 +1,6 @@
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "sonner";
 import { PERSON } from "@/data/content";
 import { MaskedLines, Reveal, SectionHeading } from "@/components/Reveal";
 
@@ -9,21 +12,32 @@ const LINKS = [
 ];
 
 export default function Contact() {
-  const onSubmit = (e) => {
+  const [sending, setSending] = useState(false);
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const name = f.get("name") || "";
-    const email = f.get("email") || "";
-    const subject = f.get("subject") || "Internship Inquiry";
-    const body = f.get("body") || "";
-    const mail = `mailto:${PERSON.email}?subject=${encodeURIComponent(
-      `[Letter to the Editor] ${subject}`
-    )}&body=${encodeURIComponent(`${body}\n\n— ${name} (${email})`)}`;
-    window.location.href = mail;
+    const payload = {
+      name: (f.get("name") || "").toString(),
+      email: (f.get("email") || "").toString(),
+      subject: (f.get("subject") || "Internship Inquiry").toString(),
+      body: (f.get("body") || "").toString(),
+    };
+    setSending(true);
+    try {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, payload);
+      toast.success("Despatch received — replies usually within one news cycle.");
+      e.target.reset();
+    } catch (err) {
+      const detail = err?.response?.data?.detail;
+      toast.error(detail || "The post office hiccuped — please email the editor directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const field =
-    "w-full bg-transparent border border-[#121212] px-3 py-2.5 font-body text-[15px] placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-pine focus:shadow-[4px_4px_0_#136A58] transition-all duration-200";
+    "w-full bg-transparent border border-[#121212] px-3 py-2.5 font-body text-[15px] placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-azure focus:shadow-[4px_4px_0_#1A5D8F] transition-all duration-200";
 
   return (
     <section id="letters" className="relative z-10 px-4 sm:px-8 py-12 sm:py-20" data-testid="contact-section">
@@ -35,11 +49,11 @@ export default function Contact() {
           <Reveal className="lg:col-span-7">
             <form
               onSubmit={onSubmit}
-              className="border-2 border-[#121212] p-5 sm:p-8 bg-white transition-all duration-300 hover:shadow-[10px_10px_0_#136A58]"
+              className="border-2 border-[#121212] p-5 sm:p-8 bg-white transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F]"
               data-testid="letter-form"
             >
               <p className="font-mono-np text-[9px] uppercase tracking-widest text-neutral-500 mb-6">
-                Telegram Form No. 26 — fill in and press SEND DESPATCH
+                Telegram Form No. 26 — letters land directly on the editor's desk
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <label className="block">
@@ -69,10 +83,11 @@ export default function Contact() {
               </label>
               <button
                 type="submit"
+                disabled={sending}
                 data-testid="submit-letter-button"
-                className="font-kicker font-bold uppercase tracking-[0.25em] text-xs bg-pine text-[#F9F7F1] border border-pine px-8 py-3.5 hover:bg-transparent hover:text-pine hover:shadow-[6px_6px_0_#136A58] hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto"
+                className="font-kicker font-bold uppercase tracking-[0.25em] text-xs bg-azure text-[#F9F7F1] border border-azure px-8 py-3.5 hover:bg-transparent hover:text-azure hover:shadow-[6px_6px_0_#1A5D8F] hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto disabled:opacity-60 disabled:pointer-events-none"
               >
-                Send Despatch →
+                {sending ? "Sending despatch…" : "Send Despatch →"}
               </button>
             </form>
           </Reveal>
@@ -87,7 +102,7 @@ export default function Contact() {
             <Reveal delay={0.15}>
               <p className="font-body text-[15px] leading-relaxed mt-4 text-neutral-800">
                 Recruiting for AI, machine learning or generative AI roles? A letter
-                lands directly in the editor's inbox — replies are typically filed
+                here lands directly in the editor's inbox — replies are typically filed
                 within one news cycle.
               </p>
             </Reveal>
@@ -99,7 +114,7 @@ export default function Contact() {
                     target={l.href.startsWith("mailto") || l.href.startsWith("tel") || l.href === "#" ? undefined : "_blank"}
                     rel="noreferrer"
                     data-testid={l.id}
-                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-pine hover:text-[#F9F7F1] hover:px-5 transition-all duration-200 group"
+                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-azure hover:text-[#F9F7F1] hover:px-5 transition-all duration-200 group"
                   >
                     <span className="font-kicker font-bold uppercase tracking-[0.2em] text-[11px]">
                       {l.label}

@@ -14,7 +14,7 @@ export default function About() {
     <section id="front-page" ref={ref} className="relative z-10 px-4 sm:px-8 pt-12 sm:pt-20" data-testid="about-section">
       <div className="max-w-6xl mx-auto">
         <Reveal>
-          <span className="font-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-pine">
+          <span className="font-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-azure">
             Front Page — Special Report
           </span>
         </Reveal>
@@ -29,7 +29,7 @@ export default function About() {
         <Reveal delay={0.25}>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 border-y border-[#121212] py-2">
             <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] sm:text-xs">
-              By the Special Correspondent — <span className="text-pine">{PERSON.name}</span>
+              By the Special Correspondent — <span className="text-azure">{PERSON.name}</span>
             </p>
             <p className="font-mono-np uppercase tracking-widest text-[9px] sm:text-[10px] text-neutral-600">
               {PERSON.school}
@@ -39,8 +39,8 @@ export default function About() {
 
         {/* Recruiter-first: the numbers that matter, before anything else */}
         <Reveal delay={0.3}>
-          <div className="mt-8 border-2 border-[#121212] bg-white transition-all duration-300 hover:shadow-[10px_10px_0_#136A58] hover:-translate-y-1" data-testid="key-highlights">
-            <div className="flex items-center gap-2 border-b-2 border-[#121212] bg-pine text-[#F9F7F1] px-4 py-2">
+          <div className="mt-8 border-2 border-[#121212] bg-white transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F] hover:-translate-y-1" data-testid="key-highlights">
+            <div className="flex items-center gap-2 border-b-2 border-[#121212] bg-azure text-[#F9F7F1] px-4 py-2">
               <span className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] sm:text-[11px]">
                 Why this correspondent matters — by the numbers
               </span>
@@ -52,7 +52,7 @@ export default function About() {
                   data-testid={`highlight-stat-${i}`}
                   className="p-4 sm:p-5 transition-all duration-300 hover:bg-[#F3EFE6] cursor-default"
                 >
-                  <p className="font-heading font-black text-3xl sm:text-4xl text-pine leading-none">
+                  <p className="font-heading font-black text-3xl sm:text-4xl text-azure leading-none">
                     <CountUp value={h.value} />
                   </p>
                   <p className="font-body text-[13px] leading-snug mt-2 text-neutral-800">{h.label}</p>
@@ -66,7 +66,7 @@ export default function About() {
           {/* Portrait column */}
           <Reveal className="lg:col-span-4" delay={0.1}>
             <figure>
-              <div className="halftone border border-[#121212] transition-all duration-300 hover:shadow-[8px_8px_0_#136A58]" data-testid="portrait-figure">
+              <div className="halftone border border-[#121212] transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F]" data-testid="portrait-figure">
                 <motion.img
                   src={PERSON.portrait}
                   alt={`Portrait of ${PERSON.name}`}
@@ -76,10 +76,10 @@ export default function About() {
                 />
               </div>
               <figcaption className="font-mono-np text-[9px] sm:text-[10px] uppercase tracking-widest text-neutral-600 mt-2 leading-relaxed">
-                <span className="text-pine">FIG 1.1</span> — Placeholder portrait: swap in your own photograph.
+                <span className="text-azure">FIG 1.1</span> — Placeholder portrait: swap in your own photograph.
               </figcaption>
             </figure>
-            <div className="border-2 border-[#121212] mt-6 p-4 bg-white transition-all duration-300 hover:shadow-[8px_8px_0_#136A58] hover:-translate-y-0.5" data-testid="at-a-glance">
+            <div className="border-2 border-[#121212] mt-6 p-4 bg-white transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F] hover:-translate-y-0.5" data-testid="at-a-glance">
               <p className="font-kicker font-bold uppercase tracking-[0.25em] text-xs border-b border-[#121212] pb-2 mb-3">
                 At a Glance
               </p>
@@ -87,7 +87,7 @@ export default function About() {
                 {AT_A_GLANCE.map(([k, v]) => (
                   <div key={k} className="transition-transform duration-200 hover:translate-x-1">
                     <dt className="font-mono-np text-[9px] uppercase tracking-widest text-neutral-500">{k}</dt>
-                    <dd className={`font-body text-sm leading-snug ${k === "STATUS" ? "font-bold text-pine uppercase tracking-wide" : ""}`}>
+                    <dd className={`font-body text-sm leading-snug ${k === "STATUS" ? "font-bold text-azure uppercase tracking-wide" : ""}`}>
                       {v}
                     </dd>
                   </div>

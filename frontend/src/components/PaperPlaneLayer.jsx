@@ -65,7 +65,7 @@ const Plane = () => (
       <path d="M70 30 L38 30" strokeWidth="1.6" />
       <path d="M4 8 L38 30" strokeWidth="1.2" opacity="0.45" />
       <path d="M4 50 L38 30" strokeWidth="1.2" opacity="0.6" />
-      <path d="M14 55 q5 4 10 0 t10 0" strokeWidth="1.1" opacity="0.55" strokeLinecap="round" stroke="#136A58" />
+      <path d="M14 55 q5 4 10 0 t10 0" strokeWidth="1.1" opacity="0.55" strokeLinecap="round" stroke="#1A5D8F" />
     </g>
   </svg>
 );
@@ -267,7 +267,7 @@ export default function PaperPlaneLayer() {
                 {[0, 1, 2].map((i) => (
                   <motion.span
                     key={i}
-                    className="block bg-pine"
+                    className="block bg-azure"
                     style={{ width: 16 + i * 11, height: 2, marginBottom: i === 2 ? 0 : 6 }}
                     initial={{ opacity: 0, x: 16, scaleX: 0.3 }}
                     animate={{ opacity: [0, 0.95, 0], x: -26 - i * 8, scaleX: 1 }}

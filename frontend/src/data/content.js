@@ -11,6 +11,12 @@ export const PERSON = {
     "https://images.unsplash.com/photo-1684607776189-24a70a10a804?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200",
 };
 
+export const EDUCATION = [
+  ["B.Tech — Computer Science & AI", "Newton School of Technology, Rishihood University", "2024–2028 · CGPA 7.05/10.0"],
+  ["Class XII (Intermediate)", "Heera Lal Public School, Delhi", "2023–2024 · 72.2%"],
+  ["Class X (Matriculation)", "Navy Children School, Port Blair", "2021–2022 · 89.0%"],
+];
+
 export const HIGHLIGHTS = [
   { value: "19", label: "agents in one medical AI system — architected in LangGraph at Slay Health" },
   { value: "~300ms", label: "time-to-first-token shipped on a production WhatsApp RAG chatbot" },

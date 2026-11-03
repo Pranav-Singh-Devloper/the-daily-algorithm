@@ -1,18 +1,25 @@
 import asyncio
+import re
+import ipaddress
+import time
+import logging
 from contextlib import suppress
-from fastapi import FastAPI, APIRouter, Query
+from html import escape
+from html.parser import HTMLParser
+from urllib.parse import urlparse
+from fastapi import FastAPI, APIRouter, Query, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo import ASCENDING, DESCENDING, IndexModel
 import os
-import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 import uuid
 from datetime import datetime, timezone
 
+import httpx
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -45,46 +52,210 @@ app = FastAPI()
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# ---- Emergent managed email (Resend proxy) ----
+EMAIL_BASE_URL = "https://integrations.emergentagent.com"  # constant — survives deployment
+EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
+EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
+EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO")
+OWNER_EMAIL = os.environ["OWNER_EMAIL"]
+
+logger = logging.getLogger(__name__)
+
+_SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
+_CRED_ASK = ("reply with your password", "reply with the code", "send your password", "cvv",
+             "send us your password", "enter your password below", "confirm your card number",
+             "your full card number", "seed phrase", "recovery phrase", "verify your card",
+             "social security number", "confirm your bank details")
+_HOSTISH = re.compile(r"\b(?:https?://)?((?:[a-z0-9-]+\.)+[a-z]{2,})", re.I)
+
+
+def _host_ok(host: str) -> bool:
+    if not host or "xn--" in host:
+        return False
+    try:
+        ipaddress.ip_address(host)
+        return False
+    except ValueError:
+        pass
+    return not any(host == s or host.endswith("." + s) for s in _SHORTENERS)
+
+
+def _same_site(shown: str, real: str) -> bool:
+    return shown == real or real.endswith("." + shown) or shown.endswith("." + real)
+
+
+class _EmailScan(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.tags, self.urls, self.anchors = set(), [], []
+        self._href, self._text = None, []
+
+    def handle_starttag(self, tag, attrs):
+        self.tags.add(tag.lower())
+        self.urls += [v for k, v in attrs if k.lower() in ("href", "src") and v]
+        if tag.lower() == "a":
+            self._href = dict((k.lower(), v) for k, v in attrs).get("href")
+            self._text = []
+
+    def handle_data(self, data):
+        if self._href is not None:
+            self._text.append(data)
+
+    def handle_endtag(self, tag):
+        if tag.lower() == "a" and self._href is not None:
+            self.anchors.append((self._href, "".join(self._text)))
+            self._href, self._text = None, []
+
+
+def _assert_safe_email(subject: str, html: str) -> None:
+    scan = _EmailScan()
+    scan.feed(html)
+    if scan.tags & {"form", "input", "textarea", "select"}:
+        raise ValueError("No forms or input fields in email (G2)")
+    body = f"{subject}\n{html}".lower()
+    for p in _CRED_ASK:
+        if p in body:
+            raise ValueError(f"Email asks the recipient for credentials: {p!r} (G2)")
+    for url in scan.urls:
+        low = url.strip().lower()
+        if low.startswith(("mailto:", "tel:", "cid:", "#")):
+            continue
+        if not low.startswith("https://"):
+            raise ValueError(f"Email links/assets must be absolute https: {url!r} (G3)")
+        host = urlparse(low).hostname or ""
+        if not _host_ok(host) or urlparse(low).username is not None:
+            raise ValueError(f"Shortened, numeric-host or credential-bearing URL: {url!r} (G3)")
+    for href, text in scan.anchors:
+        real = urlparse(href.strip().lower()).hostname or ""
+        if not real:
+            continue
+        for m in _HOSTISH.finditer(text):
+            if not _same_site(m.group(1).lower(), real):
+                raise ValueError(f"Anchor text {m.group(1)!r} ≠ real link host {real!r} (G3)")
+
+
+async def send_email(*, to: str, subject: str, html: str, reply_to: str | None = None) -> str | None:
+    _assert_safe_email(subject, html)
+    payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
+    if reply_to or EMAIL_REPLY_TO:
+        payload["contact_email"] = reply_to or EMAIL_REPLY_TO
+    try:
+        async with httpx.AsyncClient(timeout=30) as http:
+            resp = await http.post(
+                f"{EMAIL_BASE_URL}/api/v1/email/send",
+                headers={"X-Email-Key": EMAIL_KEY},
+                json=payload,
+            )
+        resp.raise_for_status()
+        return resp.json().get("id")
+    except httpx.HTTPStatusError as e:
+        try:
+            code = e.response.json().get("code", "")
+        except ValueError:
+            code = ""
+        if code in ("insufficient_credits", "integration_disabled", "daily_limit_reached"):
+            logger.warning(f"Email paused: {code} ({e.response.status_code}): {e.response.json().get('message', '')}")
+            raise HTTPException(status_code=503, detail="Email is temporarily unavailable")
+        logger.error(f"Email send failed: {e.response.status_code} {e.response.text}")
+        raise HTTPException(status_code=502, detail="Failed to send email")
+    except Exception as e:
+        logger.error(f"Email send error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to send email")
+
+
+# ---- Contact form ----
+class ContactMessage(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    email: str = Field(min_length=5, max_length=200)
+    subject: str = Field(default="Internship Inquiry", max_length=200)
+    body: str = Field(min_length=1, max_length=5000)
+
+
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+_RATE: dict[str, list[float]] = {}
+RATE_LIMIT, RATE_WINDOW = 5, 60.0
+
+
+def _rate_ok(key: str) -> bool:
+    now = time.time()
+    hits = [t for t in _RATE.get(key, []) if now - t < RATE_WINDOW]
+    if len(hits) >= RATE_LIMIT:
+        _RATE[key] = hits
+        return False
+    hits.append(now)
+    _RATE[key] = hits
+    return True
+
 
 # Define Models
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
+
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+
 class StatusCheckCreate(BaseModel):
     client_name: str
+
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
 
+
+@api_router.post("/contact")
+async def submit_letter(msg: ContactMessage):
+    if not _EMAIL_RE.match(msg.email):
+        raise HTTPException(status_code=422, detail="Please enter a valid email address")
+    ip = "anon"
+    if not _rate_ok(ip):
+        raise HTTPException(status_code=429, detail="Too many letters at once — try again in a minute")
+    subject = "New letter to the editor — The Daily Algorithm"
+    html = (
+        '<table role="presentation" width="100%" style="background:#f9f7f1;padding:24px">'
+        '<tr><td style="font-family:Georgia,serif">'
+        '<h2 style="margin:0 0 12px;color:#121212;border-bottom:2px solid #121212;padding-bottom:8px">'
+        'New Letter to the Editor</h2>'
+        f'<p><strong>From:</strong> {escape(msg.name)} ({escape(msg.email)})</p>'
+        f'<p><strong>Subject:</strong> {escape(msg.subject)}</p>'
+        f'<div style="border:1px solid #d2cec4;background:#ffffff;padding:16px;margin-top:8px">'
+        f'<p style="margin:0;white-space:pre-wrap">{escape(msg.body)}</p></div>'
+        '<p style="font-size:12px;color:#888;margin-top:16px">Sent by The Daily Algorithm portfolio. '
+        'We never ask for your password or card details by email.</p>'
+        '</td></tr></table>'
+    )
+    await send_email(to=OWNER_EMAIL, subject=subject, html=html, reply_to=EMAIL_REPLY_TO)
+    return {"status": "success", "message": "Letter delivered to the editor"}
+
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
-    
+
     # Convert to dict and serialize datetime to ISO string for MongoDB
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
-    
+
     _ = await db.status_checks.insert_one(doc)
     return status_obj
+
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks(limit: int = Query(20, ge=1, le=100)):
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).sort("timestamp", -1).limit(limit).to_list(limit)
-    
+
     # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
         if isinstance(check['timestamp'], str):
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
+
     return status_checks
+
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -102,11 +273,12 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-logger = logging.getLogger(__name__)
+
 
 @app.on_event("startup")
 async def start_index_build():
     app.state.index_task = asyncio.create_task(ensure_indexes())  # background: a big index build must not block boot
+
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

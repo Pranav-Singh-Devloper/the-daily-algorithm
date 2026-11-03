@@ -7,7 +7,7 @@ const Tags = ({ tags }) => (
     {tags.map((t) => (
       <span
         key={t}
-        className="font-mono-np text-[9px] uppercase tracking-widest border border-[#121212] px-2 py-0.5 hover:bg-pine hover:text-[#F9F7F1] hover:border-pine hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+        className="font-mono-np text-[9px] uppercase tracking-widest border border-[#121212] px-2 py-0.5 hover:bg-azure hover:text-[#F9F7F1] hover:border-azure hover:-translate-y-0.5 transition-all duration-200 cursor-default"
       >
         {t}
       </span>
@@ -16,7 +16,7 @@ const Tags = ({ tags }) => (
 );
 
 const Metric = ({ children }) => (
-  <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] mt-4 pt-3 border-t border-[#121212] text-pine">
+  <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] mt-4 pt-3 border-t border-[#121212] text-azure">
     {children}
   </p>
 );
@@ -42,8 +42,8 @@ export default function Projects() {
           data-testid="project-featured"
         >
           <Reveal>
-            <div className="halftone border border-[#121212] relative group transition-all duration-300 hover:shadow-[10px_10px_0_#136A58]">
-              <span className="absolute top-0 left-0 z-10 bg-pine text-[#F9F7F1] font-kicker font-bold uppercase tracking-[0.2em] text-[9px] sm:text-[10px] px-3 py-1.5">
+            <div className="halftone border border-[#121212] relative group transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F]">
+              <span className="absolute top-0 left-0 z-10 bg-azure text-[#F9F7F1] font-kicker font-bold uppercase tracking-[0.2em] text-[9px] sm:text-[10px] px-3 py-1.5">
                 ★ Lead Story
               </span>
               <img
@@ -56,7 +56,7 @@ export default function Projects() {
           </Reveal>
           <div className="flex flex-col justify-center">
             <Reveal delay={0.08}>
-              <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-pine">
+              <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-azure">
                 {lead.category}
               </p>
             </Reveal>
@@ -80,7 +80,7 @@ export default function Projects() {
             <article
               key={p.title}
               data-testid={`project-card-${i}`}
-              className="transition-all duration-300 hover:-translate-y-1 hover:shadow-[10px_10px_0_#136A58] p-2 -m-2"
+              className="transition-all duration-300 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1A5D8F] p-2 -m-2"
             >
               <Reveal>
                 <div className="halftone border border-[#121212] group">
@@ -93,7 +93,7 @@ export default function Projects() {
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-pine mt-4">
+                <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-azure mt-4">
                   {p.category}
                 </p>
                 <h3 className="font-heading font-black text-xl sm:text-2xl leading-snug tracking-tight mt-2">

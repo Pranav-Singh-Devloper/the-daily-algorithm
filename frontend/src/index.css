@@ -9,7 +9,7 @@
   --ink-2: #242424;
   --ink-muted: #5a5a5a;
   --rule-light: #d2cec4;
-  --pine: #136a58;
+  --azure: #1A5D8F;
 
   --background: 45 33% 96%;
   --foreground: 0 0% 7%;
@@ -48,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: var(--pine);
+  background: var(--azure);
   color: var(--paper);
 }
 
@@ -154,7 +154,7 @@ body {
   content: "";
   position: absolute;
   inset: 2px;
-  background: var(--pine);
+  background: var(--azure);
   opacity: 0.85;
   clip-path: polygon(14% 44%, 0 62%, 42% 100%, 100% 18%, 84% 4%, 40% 68%);
   transition: opacity 0.2s ease;
@@ -164,13 +164,36 @@ body {
 }
 .skill-item:hover {
   transform: translateX(5px);
-  color: var(--pine);
+  color: var(--azure);
 }
 .skill-item:hover .tickbox {
-  border-color: var(--pine);
+  border-color: var(--azure);
   transform: rotate(-4deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .np-ticker-track { animation: none; }
+}
+
+/* ---- Print: only the Résumé Snapshot reaches the paper ---- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-snapshot,
+  .print-snapshot * {
+    visibility: visible;
+  }
+  .print-snapshot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .paper-grain {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+  }
 }
