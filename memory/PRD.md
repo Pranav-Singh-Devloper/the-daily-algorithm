@@ -20,7 +20,7 @@ Build a portfolio for a student aspiring to be an AI/ML engineering intern (expl
 - Newspaper devices: dateline, masthead, double rules, drop cap, justified 2-col editorial text with column rule, halftone photo treatment, grain overlay, classified-ad grid, gazette notice box, almanac tickboxes, telegram form, slow marquee ticker.
 
 ## Signature Interactions
-- Paper plane: ResizeObserver-measured SVG path spanning full document height, plane bound to spring-smoothed scrollYProgress via offset-path/offsetDistance, offset-rotate for tangent orientation, solid trail grows behind plane (pathLength).
+- Paper plane (v2, 3D flight system): organic wander path (irregular phase/amplitude) spanning the document; plane rendered as two-tone 3/4-view line art with CSS 3D — banks into turns (rotateX from path curvature), yaws toward/away from viewer (rotateY from heading), under a 700px perspective. Depth cycle (~1.5 passes down the page) drives scale 0.7–1.25, opacity, blur and z-index so it flies BEHIND cards/headlines (z=4) then in FRONT (z=50). All dynamics updated imperatively via useMotionValueEvent (zero re-renders). Solid trail grows behind plane via pathLength.
 - Masked line-by-line headline reveals (observe clip container, propagate variants to inner line).
 - Parallax halftone portrait; hover inversions on nav/links/buttons.
 
