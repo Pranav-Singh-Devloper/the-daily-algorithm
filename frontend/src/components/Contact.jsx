@@ -23,7 +23,7 @@ export default function Contact() {
   };
 
   const field =
-    "w-full bg-transparent border border-[#121212] px-3 py-2.5 font-body text-[15px] placeholder:text-neutral-400 focus:outline-none focus:bg-white transition-colors duration-200";
+    "w-full bg-transparent border border-[#121212] px-3 py-2.5 font-body text-[15px] placeholder:text-neutral-400 focus:outline-none focus:bg-white focus:border-pine focus:shadow-[4px_4px_0_#136A58] transition-all duration-200";
 
   return (
     <section id="letters" className="relative z-10 px-4 sm:px-8 py-12 sm:py-20" data-testid="contact-section">
@@ -33,7 +33,11 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Form */}
           <Reveal className="lg:col-span-7">
-            <form onSubmit={onSubmit} className="border-2 border-[#121212] p-5 sm:p-8" data-testid="letter-form">
+            <form
+              onSubmit={onSubmit}
+              className="border-2 border-[#121212] p-5 sm:p-8 bg-white transition-all duration-300 hover:shadow-[10px_10px_0_#136A58]"
+              data-testid="letter-form"
+            >
               <p className="font-mono-np text-[9px] uppercase tracking-widest text-neutral-500 mb-6">
                 Telegram Form No. 26 — fill in and press SEND DESPATCH
               </p>
@@ -66,7 +70,7 @@ export default function Contact() {
               <button
                 type="submit"
                 data-testid="submit-letter-button"
-                className="font-kicker font-bold uppercase tracking-[0.25em] text-xs bg-rubric text-[#F9F7F1] border border-rubric px-8 py-3.5 hover:bg-transparent hover:text-rubric transition-colors duration-200 w-full sm:w-auto"
+                className="font-kicker font-bold uppercase tracking-[0.25em] text-xs bg-pine text-[#F9F7F1] border border-pine px-8 py-3.5 hover:bg-transparent hover:text-pine hover:shadow-[6px_6px_0_#136A58] hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto"
               >
                 Send Despatch →
               </button>
@@ -95,7 +99,7 @@ export default function Contact() {
                     target={l.href.startsWith("mailto") || l.href.startsWith("tel") || l.href === "#" ? undefined : "_blank"}
                     rel="noreferrer"
                     data-testid={l.id}
-                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-rubric hover:text-[#F9F7F1] transition-colors duration-200 group"
+                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-pine hover:text-[#F9F7F1] hover:px-5 transition-all duration-200 group"
                   >
                     <span className="font-kicker font-bold uppercase tracking-[0.2em] text-[11px]">
                       {l.label}

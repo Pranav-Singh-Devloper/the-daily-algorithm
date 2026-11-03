@@ -9,6 +9,7 @@
   --ink-2: #242424;
   --ink-muted: #5a5a5a;
   --rule-light: #d2cec4;
+  --pine: #136a58;
 
   --background: 45 33% 96%;
   --foreground: 0 0% 7%;
@@ -47,15 +48,15 @@ body {
 }
 
 ::selection {
-  background: var(--ink);
+  background: var(--pine);
   color: var(--paper);
 }
 
 .font-masthead {
-  font-family: "Cinzel Decorative", "Playfair Display", Georgia, serif;
+  font-family: "Fraunces", "Playfair Display", Georgia, serif;
 }
 .font-heading {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Fraunces", "Playfair Display", Georgia, serif;
 }
 .font-body {
   font-family: "Newsreader", "Times New Roman", serif;
@@ -86,6 +87,10 @@ body {
   background-size: 4px 4px;
   pointer-events: none;
   mix-blend-mode: multiply;
+  transition: opacity 0.5s ease;
+}
+.halftone:hover::after {
+  opacity: 0.35;
 }
 
 .paper-grain {
@@ -104,7 +109,7 @@ body {
 }
 
 .dropcap::first-letter {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Fraunces", Georgia, serif;
   font-weight: 900;
   float: left;
   font-size: 3.5em;
@@ -129,6 +134,9 @@ body {
   animation: np-ticker 48s linear infinite;
   will-change: transform;
 }
+.np-ticker:hover .np-ticker-track {
+  animation-play-state: paused;
+}
 
 /* ---- Skill tickbox ---- */
 .tickbox {
@@ -140,14 +148,27 @@ body {
   position: relative;
   top: 1px;
   flex: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .tickbox::after {
   content: "";
   position: absolute;
   inset: 2px;
-  background: #B3231F;
+  background: var(--pine);
   opacity: 0.85;
   clip-path: polygon(14% 44%, 0 62%, 42% 100%, 100% 18%, 84% 4%, 40% 68%);
+  transition: opacity 0.2s ease;
+}
+.skill-item {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+}
+.skill-item:hover {
+  transform: translateX(5px);
+  color: var(--pine);
+}
+.skill-item:hover .tickbox {
+  border-color: var(--pine);
+  transform: rotate(-4deg);
 }
 
 @media (prefers-reduced-motion: reduce) {

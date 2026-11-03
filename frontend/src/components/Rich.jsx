@@ -1,11 +1,11 @@
-// Renders "##highlighted##" spans in editorial rubric red inside body copy.
+// Renders "##highlighted##" spans in editorial pine red inside body copy.
 export const Rich = ({ text, className = "" }) => {
   const parts = String(text).split("##");
   return (
     <p className={className}>
       {parts.map((s, i) =>
         i % 2 === 1 ? (
-          <strong key={i} className="text-rubric font-semibold">
+          <strong key={i} className="text-pine font-semibold">
             {s}
           </strong>
         ) : (
