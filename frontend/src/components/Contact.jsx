@@ -66,7 +66,7 @@ export default function Contact() {
               <button
                 type="submit"
                 data-testid="submit-letter-button"
-                className="font-kicker font-bold uppercase tracking-[0.25em] text-xs bg-[#121212] text-[#F9F7F1] px-8 py-3.5 hover:bg-transparent hover:text-[#121212] border border-[#121212] transition-colors duration-200 w-full sm:w-auto"
+                className="font-kicker font-bold uppercase tracking-[0.25em] text-xs bg-rubric text-[#F9F7F1] border border-rubric px-8 py-3.5 hover:bg-transparent hover:text-rubric transition-colors duration-200 w-full sm:w-auto"
               >
                 Send Despatch →
               </button>
@@ -95,7 +95,7 @@ export default function Contact() {
                     target={l.href.startsWith("mailto") || l.href.startsWith("tel") || l.href === "#" ? undefined : "_blank"}
                     rel="noreferrer"
                     data-testid={l.id}
-                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-[#121212] hover:text-[#F9F7F1] transition-colors duration-200 group"
+                    className="flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-rubric hover:text-[#F9F7F1] transition-colors duration-200 group"
                   >
                     <span className="font-kicker font-bold uppercase tracking-[0.2em] text-[11px]">
                       {l.label}

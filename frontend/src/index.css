@@ -145,7 +145,7 @@ body {
   content: "";
   position: absolute;
   inset: 2px;
-  background: var(--ink);
+  background: #B3231F;
   opacity: 0.85;
   clip-path: polygon(14% 44%, 0 62%, 42% 100%, 100% 18%, 84% 4%, 40% 68%);
 }

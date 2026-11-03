@@ -1,12 +1,13 @@
 import { PROJECTS } from "@/data/content";
 import { MaskedLines, Reveal, SectionHeading } from "@/components/Reveal";
+import { Rich } from "@/components/Rich";
 
 const Tags = ({ tags }) => (
   <div className="flex flex-wrap gap-1.5 mt-4">
     {tags.map((t) => (
       <span
         key={t}
-        className="font-mono-np text-[9px] uppercase tracking-widest border border-[#121212] px-2 py-0.5"
+        className="font-mono-np text-[9px] uppercase tracking-widest border border-[#121212] px-2 py-0.5 hover:bg-rubric hover:text-[#F9F7F1] hover:border-rubric transition-colors duration-200"
       >
         {t}
       </span>
@@ -15,7 +16,7 @@ const Tags = ({ tags }) => (
 );
 
 const Metric = ({ children }) => (
-  <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] mt-4 pt-3 border-t border-[#121212]">
+  <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] mt-4 pt-3 border-t border-[#121212] text-rubric">
     {children}
   </p>
 );
@@ -38,13 +39,16 @@ export default function Projects() {
         {/* Lead story */}
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b-2 border-[#121212] pb-10" data-testid="project-featured">
           <Reveal>
-            <div className="halftone border border-[#121212]">
+            <div className="halftone border border-[#121212] relative">
+              <span className="absolute top-0 left-0 z-10 bg-rubric text-[#F9F7F1] font-kicker font-bold uppercase tracking-[0.2em] text-[9px] sm:text-[10px] px-3 py-1.5">
+                ★ Lead Story
+              </span>
               <img src={lead.image} alt={lead.title} className="w-full h-[300px] sm:h-[420px] object-cover" loading="lazy" />
             </div>
           </Reveal>
           <div className="flex flex-col justify-center">
             <Reveal delay={0.08}>
-              <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-neutral-500">
+              <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-rubric">
                 {lead.category}
               </p>
             </Reveal>
@@ -55,9 +59,7 @@ export default function Projects() {
               delay={0.1}
             />
             <Reveal delay={0.25}>
-              <p className="font-body text-base sm:text-lg leading-relaxed justify-editorial mt-4">
-                {lead.summary}
-              </p>
+              <Rich text={lead.summary} className="font-body text-base sm:text-lg leading-relaxed justify-editorial mt-4" />
               <Tags tags={lead.tags} />
               <Metric>{lead.metrics}</Metric>
             </Reveal>
@@ -74,13 +76,13 @@ export default function Projects() {
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-neutral-500 mt-4">
+                <p className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] text-rubric mt-4">
                   {p.category}
                 </p>
                 <h3 className="font-heading font-black text-xl sm:text-2xl leading-snug tracking-tight mt-2">
                   {p.title}
                 </h3>
-                <p className="font-body text-[15px] leading-relaxed justify-editorial mt-2">{p.summary}</p>
+                <Rich text={p.summary} className="font-body text-[15px] leading-relaxed justify-editorial mt-2" />
                 <Tags tags={p.tags} />
                 <Metric>{p.metrics}</Metric>
               </Reveal>

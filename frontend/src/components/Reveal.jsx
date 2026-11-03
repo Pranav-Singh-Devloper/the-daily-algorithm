@@ -52,7 +52,7 @@ export const MaskedLines = ({
 export const SectionHeading = ({ kicker, title, rule = true }) => (
   <div className="mb-8 sm:mb-12">
     <Reveal>
-      <span className="font-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-neutral-600">
+      <span className="font-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-rubric">
         {kicker}
       </span>
     </Reveal>

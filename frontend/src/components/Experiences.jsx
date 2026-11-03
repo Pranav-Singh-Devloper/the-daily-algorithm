@@ -1,5 +1,6 @@
 import { EXPERIENCES } from "@/data/content";
 import { Reveal, SectionHeading } from "@/components/Reveal";
+import { Rich } from "@/components/Rich";
 
 export default function Experiences() {
   return (
@@ -19,13 +20,11 @@ export default function Experiences() {
               </p>
               <h3 className="font-heading font-black text-lg sm:text-2xl leading-snug mt-2">{x.role}</h3>
               <p className="font-body italic text-sm mt-1">{x.org}</p>
-              <div className="border-t border-b border-[#D2CEC4] py-1.5 my-3 flex justify-between font-mono-np text-[9px] uppercase tracking-widest text-neutral-700">
-                <span>{x.period}</span>
-                <span>{x.location}</span>
+              <div className="border-t border-b border-[#D2CEC4] py-1.5 my-3 flex justify-between font-mono-np text-[9px] uppercase tracking-widest">
+                <span className="text-rubric font-bold">{x.period}</span>
+                <span className="text-neutral-700">{x.location}</span>
               </div>
-              <p className="font-body text-sm sm:text-[15px] leading-relaxed justify-editorial">
-                {x.summary}
-              </p>
+              <Rich text={x.summary} className="font-body text-sm sm:text-[15px] leading-relaxed justify-editorial" />
             </Reveal>
           ))}
         </div>

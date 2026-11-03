@@ -20,8 +20,11 @@ export default function Achievements() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5"
+                  className="flex gap-4 sm:gap-6 py-5"
                 >
+                  <span className="font-mono-np font-bold text-rubric text-xs pt-1 flex-none">
+                    0{i + 1}
+                  </span>
                   <span className="font-heading font-black text-sm sm:text-base uppercase tracking-wide sm:w-1/2 leading-snug">
                     {title}
                   </span>

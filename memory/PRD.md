@@ -27,6 +27,8 @@ Build a portfolio for a student aspiring to be an AI/ML engineering intern (expl
 ## Implemented (2026-11-03)
 - All 7 sections + footer, plane scroll engine, marquee, masked reveals, parallax, mailto contact form, favicon paper-plane mark, full mobile layout, data-testids on all interactive elements.
 - Verified: desktop 1440 + mobile 390 screenshots, no overflow-x, all reveals firing, plane tracking scroll; fixed masked-reveal IntersectionObserver bug and footer path overlap.
+- v2 (2026-11-03): Real resume data merged from user PDFs (Pranav Singh, Slay Health, MA Studio, Engram/Nexus/Sentiment projects, achievements, skills).
+- v3 (2026-11-03): Cinematic take-off intro (plane unfolds at masthead and lifts off over 2.4s, skipped under prefers-reduced-motion); tap-to-fly barrel roll with red speed lines; editorial rubric-red accent palette (#B3231F) — red ticker, kickers, metrics, highlights; recruiter-first "By the Numbers" hero stat band (19 agents, ~300ms TTFT, 250+ problems, 2 internships); key phrases highlighted in red via ##-markup Rich component; fixed plane z-index stacking so front/back depth actually renders above/below content.
 
 ## Backlog
 - P0: Swap placeholder persona (Alexander Sterling) for the user's real name, resume content, links, and portrait photo (edit src/data/content.js only).

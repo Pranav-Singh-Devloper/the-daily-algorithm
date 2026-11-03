@@ -14,7 +14,7 @@ const NavLink = ({ id, label }) => (
     href={`#${id}`}
     data-testid={`nav-link-${id}`}
     onClick={scrollTo(id)}
-    className="font-kicker font-bold uppercase tracking-[0.22em] text-[11px] sm:text-xs text-neutral-800 hover:bg-[#121212] hover:text-[#F9F7F1] transition-colors duration-200 px-2 py-1"
+    className="font-kicker font-bold uppercase tracking-[0.22em] text-[11px] sm:text-xs text-neutral-800 hover:bg-rubric hover:text-[#F9F7F1] transition-colors duration-200 px-2 py-1"
   >
     {label}
   </a>
@@ -41,11 +41,11 @@ export default function Masthead() {
         The Daily Algorithm
       </h1>
       <div className="flex items-center justify-center gap-3 mt-3 sm:mt-4">
-        <span className="hidden sm:block h-px w-24 bg-[#121212]" />
-        <p className="font-kicker font-bold uppercase tracking-[0.28em] text-[10px] sm:text-xs text-neutral-800 text-center">
+        <span className="hidden sm:block h-px w-24 bg-rubric" />
+        <p className="font-kicker font-bold uppercase tracking-[0.28em] text-[10px] sm:text-xs text-rubric text-center">
           Est. 2026 — Special Internship Edition — The AI/ML Desk
         </p>
-        <span className="hidden sm:block h-px w-24 bg-[#121212]" />
+        <span className="hidden sm:block h-px w-24 bg-rubric" />
       </div>
 
       {/* Nav */}
@@ -57,7 +57,7 @@ export default function Masthead() {
 
       {/* Ticker */}
       <div
-        className="mt-0 border-b border-[#121212] overflow-hidden bg-[#121212] text-[#F9F7F1]"
+        className="mt-0 border-b border-[#121212] overflow-hidden bg-rubric text-[#F9F7F1]"
         data-testid="news-ticker"
       >
         <div className="np-ticker-track py-1.5">
