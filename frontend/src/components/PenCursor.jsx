@@ -51,21 +51,24 @@ export default function PenCursor() {
     <>
       <motion.div className="fixed left-0 top-0 z-[90] pointer-events-none" style={{ x: sx, y: sy }}>
         <motion.div
-          style={{ marginLeft: -30, marginTop: -79, transformOrigin: "30px 79px", rotate: -38 }}
+          style={{ marginLeft: -14, marginTop: -30, transformOrigin: "14px 30px", rotate: -35 }}
           animate={{
-            scale: press ? 0.85 : hot ? 1.12 : 1,
+            scale: press ? 0.85 : hot ? 1.15 : 1,
             opacity: dim ? 0.2 : 1,
-            rotate: press ? -34 : -38,
+            rotate: press ? -30 : -35,
           }}
           transition={{ type: "spring", stiffness: 420, damping: 24 }}
         >
-          <svg width="60" height="80" viewBox="0 0 60 80" fill="none" style={{ display: "block" }}>
-            <path d="M22 0 L38 0 L39 38 L21 38 Z" fill="var(--ink)" />
-            <rect x="21" y="6" width="18" height="3.5" fill="var(--azure)" />
-            <rect x="21" y="38" width="18" height="12" fill="var(--azure)" />
-            <path d="M30 79 L21 50 L39 50 Z" fill="var(--ink)" stroke="var(--paper)" strokeWidth="1" />
-            <circle cx="30" cy="60" r="2.2" fill="var(--paper)" />
-            <line x1="30" y1="62.5" x2="30" y2="70" stroke="var(--paper)" strokeWidth="1" />
+          <svg width="28" height="32" viewBox="0 0 28 32" fill="none" style={{ display: "block" }}>
+            <path
+              d="M14 31 L3 7 Q14 0.5 25 7 Z"
+              fill="var(--ink)"
+              stroke="var(--paper)"
+              strokeWidth="1.2"
+              strokeLinejoin="round"
+            />
+            <circle cx="14" cy="11" r="2" fill="var(--paper)" />
+            <line x1="14" y1="13.5" x2="14" y2="22" stroke="var(--paper)" strokeWidth="1.2" />
           </svg>
         </motion.div>
       </motion.div>
