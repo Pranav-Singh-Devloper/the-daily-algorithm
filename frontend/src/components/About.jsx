@@ -72,12 +72,12 @@ export default function About() {
                   src={PERSON.portrait}
                   alt={`Portrait of ${PERSON.name}`}
                   style={{ y: imgY }}
-                  className="w-full h-[340px] sm:h-[420px] object-cover scale-[1.14]"
+                  className="w-full h-[340px] sm:h-[460px] object-cover object-top scale-[1.12]"
                   loading="eager"
                 />
               </div>
               <figcaption className="font-mono-np text-[9px] sm:text-[10px] uppercase tracking-widest text-ink-soft mt-2 leading-relaxed">
-                <span className="text-azure">FIG 1.1</span> — Placeholder portrait: swap in your own photograph.
+                <span className="text-azure">FIG 1.1</span> — The correspondent, photographed for this edition.
               </figcaption>
             </figure>
             <div className="border-2 border-ink mt-6 p-4 bg-card transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F] hover:-translate-y-0.5" data-testid="at-a-glance">

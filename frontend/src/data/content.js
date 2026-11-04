@@ -8,7 +8,7 @@ export const PERSON = {
   github: "#",
   linkedin: "#",
   portrait:
-    "https://images.unsplash.com/photo-1684607776189-24a70a10a804?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200",
+    "https://customer-assets-wrfwihn1.emergentagent.net/job_daily-ai-dispatch--6jak4ttr/artifacts/e8f48a022346f43f_IMG_5528%20-%20Edited.png",
 };
 
 export const EDUCATION = [
