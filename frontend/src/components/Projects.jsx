@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import { PROJECTS } from "@/data/content";
 import { MaskedLines, Reveal, SectionHeading } from "@/components/Reveal";
 import { Rich } from "@/components/Rich";
+
+const slugOf = (t) => t.split(/[ :]/)[0].toLowerCase();
 
 const Tags = ({ tags }) => (
   <div className="flex flex-wrap gap-1.5 mt-4">
@@ -97,8 +100,20 @@ export default function Projects() {
                   {p.category}
                 </p>
                 <h3 className="font-heading font-black text-xl sm:text-2xl leading-snug tracking-tight mt-2">
-                  {p.title}
+                  <Link
+                    to={`/projects/${slugOf(p.title)}`}
+                    data-testid={`project-link-${i}`}
+                    className="hover:text-azure hover:underline decoration-2 underline-offset-4 transition-colors duration-200"
+                  >
+                    {p.title}
+                  </Link>
                 </h3>
+                <Link
+                  to={`/projects/${slugOf(p.title)}`}
+                  className="inline-block font-kicker font-bold uppercase tracking-[0.22em] text-[10px] text-azure mt-2 hover:underline underline-offset-4"
+                >
+                  Read the case file →
+                </Link>
                 <Rich text={p.summary} className="font-body text-[15px] leading-relaxed justify-editorial mt-2" />
                 <Tags tags={p.tags} />
                 <Metric>{p.metrics}</Metric>

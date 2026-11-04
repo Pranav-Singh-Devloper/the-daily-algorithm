@@ -4,6 +4,7 @@ import PaperPlaneLayer from "@/components/PaperPlaneLayer";
 import Masthead from "@/components/Masthead";
 import About from "@/components/About";
 import Experiences from "@/components/Experiences";
+import PullQuote from "@/components/PullQuote";
 import Projects from "@/components/Projects";
 import Achievements from "@/components/Achievements";
 import Skills from "@/components/Skills";
@@ -12,6 +13,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import NoBS from "@/components/NoBS";
 import IntroUnfold from "@/components/IntroUnfold";
+import PressProgress from "@/components/PressProgress";
 
 export default function Home() {
   const [noBs, setNoBs] = useState(() => localStorage.getItem("view") === "nobs");
@@ -45,6 +47,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-paper text-ink" id="top">
       <IntroUnfold />
+      <PressProgress />
       <div className="paper-texture" aria-hidden="true" />
       <div className="paper-sheen" aria-hidden="true" />
       <PaperPlaneLayer />
@@ -52,6 +55,7 @@ export default function Home() {
       <main>
         <About />
         <Experiences />
+        <PullQuote />
         <Projects />
         <Achievements />
         <Skills />

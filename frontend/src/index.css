@@ -203,6 +203,29 @@ body {
   .np-ticker-track { animation: none; }
 }
 
+/* ---- Fountain-pen cursor: native cursor retires on fine pointers ---- */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  body a,
+  body button,
+  body [role="button"],
+  body label,
+  body span,
+  body p,
+  body h1,
+  body h2,
+  body h3,
+  body li,
+  body div {
+    cursor: none;
+  }
+  input,
+  textarea,
+  select {
+    cursor: text;
+  }
+}
+
 /* ---- Aged paper: grain + creases + stains, reactive to the cursor ---- */
 .paper-texture {
   position: fixed;

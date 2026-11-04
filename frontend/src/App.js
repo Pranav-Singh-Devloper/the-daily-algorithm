@@ -1,8 +1,10 @@
 import { useEffect, Component } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import "@/App.css";
 import Home from "@/pages/Home";
+import CaseStudy from "@/pages/CaseStudy";
+import PenCursor from "@/components/PenCursor";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -21,6 +23,15 @@ class ErrorBoundary extends Component {
       this.props.children
     );
   }
+}
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
 }
 
 function App() {
@@ -43,7 +54,13 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <Home />
+        <ScrollToTop />
+        <PenCursor />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/:slug" element={<CaseStudy />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
       </BrowserRouter>
     </ErrorBoundary>
   );
