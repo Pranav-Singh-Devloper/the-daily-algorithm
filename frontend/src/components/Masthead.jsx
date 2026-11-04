@@ -31,15 +31,20 @@ export default function Masthead({ onNoBs }) {
         <span className="flex items-center gap-3">
           <span>Price: One Offer</span>
           <ThemeToggle />
-          <button
-            type="button"
-            onClick={onNoBs}
-            data-testid="nobs-toggle-button"
-            title="Skip the theatre — plain portfolio"
-            className="font-mono-np text-[9px] uppercase tracking-widest border border-ink px-2 py-0.5 hover:bg-ink hover:text-paper transition-colors duration-200 cursor-pointer"
-          >
-            No BS
-          </button>
+          <span className="relative group flex">
+            <button
+              type="button"
+              onClick={onNoBs}
+              data-testid="nobs-toggle-button"
+              title="Skip the theatre — plain portfolio"
+              className="font-mono-np text-[9px] uppercase tracking-widest border border-ink px-2 py-0.5 hover:bg-ink hover:text-paper transition-colors duration-200 cursor-pointer"
+            >
+              No BS
+            </button>
+            <span className="pointer-events-none absolute top-full right-0 mt-2 w-60 border border-ink bg-ink text-paper font-mono-np text-[9px] uppercase tracking-widest leading-relaxed p-3 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200 z-50">
+              Straight résumé, zero theatre — the plain-paper edition for busy recruiters
+            </span>
+          </span>
         </span>
       </div>
       <div className="sm:hidden text-center font-mono-np text-[9px] uppercase tracking-widest text-ink-soft pt-1">

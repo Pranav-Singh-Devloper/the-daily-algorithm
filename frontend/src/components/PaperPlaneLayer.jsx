@@ -50,7 +50,7 @@ function buildPath(w, h) {
 }
 
 /* Two-tone 3/4-view line-art paper plane, nose pointing right (+x) */
-const Plane = () => (
+export const Plane = () => (
   <svg
     viewBox="0 0 72 64"
     width="72"

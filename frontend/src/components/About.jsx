@@ -19,12 +19,13 @@ export default function About() {
           </span>
         </Reveal>
         <MaskedLines
-          lines={[
-            "ASPIRING AI ENGINEER",
-            "SEEKS INTERNSHIP IN",
-            "MACHINE LEARNING",
-          ]}
-          className="font-heading font-black leading-[1.02] tracking-tight text-3xl sm:text-5xl lg:text-6xl mt-3"
+          lines={["PRANAV SINGH"]}
+          className="font-heading font-black leading-[0.95] tracking-tight text-5xl sm:text-6xl lg:text-7xl mt-3"
+        />
+        <MaskedLines
+          lines={["ASPIRING AI ENGINEER — SEEKING INTERNSHIPS", "IN ML, GENAI & DEEP LEARNING"]}
+          delay={0.25}
+          className="font-heading font-black leading-[1.08] tracking-tight text-xl sm:text-2xl lg:text-3xl mt-4"
         />
         <Reveal delay={0.25}>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 border-y border-ink py-2">
