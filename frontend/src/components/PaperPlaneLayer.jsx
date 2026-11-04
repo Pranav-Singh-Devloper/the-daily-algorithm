@@ -201,7 +201,7 @@ export default function PaperPlaneLayer() {
       <svg
         width={dims.w}
         height={dims.h}
-        className="absolute top-0 left-0 z-30"
+        className="absolute top-0 left-0 z-[5]"
         viewBox={`0 0 ${dims.w} ${dims.h}`}
         fill="none"
       >
@@ -219,7 +219,7 @@ export default function PaperPlaneLayer() {
           stroke="var(--ink)"
           strokeWidth="1.7"
           strokeLinecap="round"
-          style={{ pathLength: trailLength, opacity: 0.65 }}
+          style={{ pathLength: trailLength, opacity: 0.5 }}
         />
       </svg>
 
