@@ -5,16 +5,14 @@
 :root {
   --paper: #f9f7f1;
   --paper-2: #f3efe6;
+  --card: #ffffff;
   --ink: #121212;
-  --ink-2: #242424;
-  --ink-muted: #5a5a5a;
+  --ink-soft: #5a5a5a;
   --rule-light: #d2cec4;
-  --azure: #1A5D8F;
+  --azure: #1a5d8f;
 
   --background: 45 33% 96%;
   --foreground: 0 0% 7%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 7%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 7%;
   --primary: 0 0% 7%;
@@ -33,6 +31,17 @@
   --radius: 0rem;
 }
 
+/* ---- Evening Edition (dark ink night theme) ---- */
+.night {
+  --paper: #101419;
+  --paper-2: #171d25;
+  --card: #161c24;
+  --ink: #e8e4d8;
+  --ink-soft: #98a2ac;
+  --rule-light: #3a434e;
+  --azure: #4d84c0;
+}
+
 html {
   scroll-behavior: auto;
 }
@@ -45,6 +54,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 ::selection {
@@ -72,7 +82,8 @@ body {
 .halftone {
   position: relative;
   overflow: hidden;
-  background: #fff;
+  background: var(--card);
+  transition: background-color 0.5s ease, box-shadow 0.3s ease;
 }
 .halftone img {
   filter: grayscale(1) contrast(1.08) brightness(1.02);
@@ -87,10 +98,21 @@ body {
   background-size: 4px 4px;
   pointer-events: none;
   mix-blend-mode: multiply;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, background-image 0.5s ease;
 }
 .halftone:hover::after {
   opacity: 0.35;
+}
+
+/* Night press: photos become light-print on dark ink */
+.night .halftone img {
+  mix-blend-mode: screen;
+  filter: grayscale(1) invert(0.92) contrast(1.06) brightness(0.9);
+}
+.night .halftone::after {
+  background-image: radial-gradient(rgba(232, 228, 216, 0.25) 0.6px, transparent 1.1px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
 }
 
 .paper-grain {
@@ -100,6 +122,9 @@ body {
   pointer-events: none;
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.night .paper-grain {
+  opacity: 0.08;
 }
 
 .rule-double {
@@ -175,8 +200,18 @@ body {
   .np-ticker-track { animation: none; }
 }
 
-/* ---- Print: only the Résumé Snapshot reaches the paper ---- */
+/* ---- Print: only the Résumé Snapshot reaches the paper, always day edition ---- */
 @media print {
+  :root,
+  .night {
+    --paper: #f9f7f1;
+    --paper-2: #f3efe6;
+    --card: #ffffff;
+    --ink: #121212;
+    --ink-soft: #5a5a5a;
+    --rule-light: #d2cec4;
+    --azure: #1a5d8f;
+  }
   body * {
     visibility: hidden;
   }

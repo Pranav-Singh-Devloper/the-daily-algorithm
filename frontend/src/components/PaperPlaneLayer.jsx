@@ -58,14 +58,14 @@ const Plane = () => (
     fill="none"
     style={{ display: "block", overflow: "visible" }}
   >
-    <g stroke="#121212" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round">
+    <g stroke="var(--ink)" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round">
       <path d="M70 30 L4 50 L38 30 Z" fill="#c9c3b2" />
       <path d="M70 30 L38 30 L44 58 Z" fill="#eee9da" />
       <path d="M70 30 L4 8 L38 30 Z" fill="#ffffff" />
       <path d="M70 30 L38 30" strokeWidth="1.6" />
       <path d="M4 8 L38 30" strokeWidth="1.2" opacity="0.45" />
       <path d="M4 50 L38 30" strokeWidth="1.2" opacity="0.6" />
-      <path d="M14 55 q5 4 10 0 t10 0" strokeWidth="1.1" opacity="0.55" strokeLinecap="round" stroke="#1A5D8F" />
+      <path d="M14 55 q5 4 10 0 t10 0" strokeWidth="1.1" opacity="0.55" strokeLinecap="round" stroke="var(--azure)" />
     </g>
   </svg>
 );
@@ -208,7 +208,7 @@ export default function PaperPlaneLayer() {
         <path
           ref={basePathRef}
           d={path}
-          stroke="#121212"
+          stroke="var(--ink)"
           strokeOpacity="0.22"
           strokeWidth="1.4"
           strokeDasharray="2 9"
@@ -216,7 +216,7 @@ export default function PaperPlaneLayer() {
         />
         <motion.path
           d={path}
-          stroke="#121212"
+          stroke="var(--ink)"
           strokeWidth="1.7"
           strokeLinecap="round"
           style={{ pathLength: trailLength, opacity: 0.65 }}

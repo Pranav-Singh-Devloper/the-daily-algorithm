@@ -7,7 +7,7 @@ const Tags = ({ tags }) => (
     {tags.map((t) => (
       <span
         key={t}
-        className="font-mono-np text-[9px] uppercase tracking-widest border border-[#121212] px-2 py-0.5 hover:bg-azure hover:text-[#F9F7F1] hover:border-azure hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+        className="font-mono-np text-[9px] uppercase tracking-widest border border-ink px-2 py-0.5 hover:bg-azure hover:text-paper hover:border-azure hover:-translate-y-0.5 transition-all duration-200 cursor-default"
       >
         {t}
       </span>
@@ -16,7 +16,7 @@ const Tags = ({ tags }) => (
 );
 
 const Metric = ({ children }) => (
-  <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] mt-4 pt-3 border-t border-[#121212] text-azure">
+  <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] mt-4 pt-3 border-t border-ink text-azure">
     {children}
   </p>
 );
@@ -38,12 +38,12 @@ export default function Projects() {
 
         {/* Lead story */}
         <article
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b-2 border-[#121212] pb-10 transition-all duration-300 hover:-translate-y-1"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b-2 border-ink pb-10 transition-all duration-300 hover:-translate-y-1"
           data-testid="project-featured"
         >
           <Reveal>
-            <div className="halftone border border-[#121212] relative group transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F]">
-              <span className="absolute top-0 left-0 z-10 bg-azure text-[#F9F7F1] font-kicker font-bold uppercase tracking-[0.2em] text-[9px] sm:text-[10px] px-3 py-1.5">
+            <div className="halftone border border-ink relative group transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F]">
+              <span className="absolute top-0 left-0 z-10 bg-azure text-paper font-kicker font-bold uppercase tracking-[0.2em] text-[9px] sm:text-[10px] px-3 py-1.5">
                 ★ Lead Story
               </span>
               <img
@@ -83,7 +83,7 @@ export default function Projects() {
               className="transition-all duration-300 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1A5D8F] p-2 -m-2"
             >
               <Reveal>
-                <div className="halftone border border-[#121212] group">
+                <div className="halftone border border-ink group">
                   <img
                     src={p.image}
                     alt={p.title}

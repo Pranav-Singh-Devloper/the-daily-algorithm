@@ -15,8 +15,14 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
-        azure: '#1A5D8F',
+        azure: 'var(--azure)',
         gold: '#C9A227',
+        ink: 'var(--ink)',
+        paper: 'var(--paper)',
+        card: 'var(--card)',
+        paper2: 'var(--paper-2)',
+        'ink-soft': 'var(--ink-soft)',
+        'rule-light': 'var(--rule-light)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

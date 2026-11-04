@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { animate, useInView } from "framer-motion";
 
 // Counts the numeric part of a stat string up when scrolled into view,
@@ -6,23 +6,26 @@ import { animate, useInView } from "framer-motion";
 export const CountUp = ({ value }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
-  const match = String(value).match(/[\d.]+/);
-  const num = match ? parseFloat(match[0]) : null;
-  const template = String(value);
-  const [display, setDisplay] = useState(num === null ? template : template.replace(match[0], "0"));
+  const parsed = useMemo(() => {
+    const m = String(value).match(/[\d.]+/);
+    if (!m) return null;
+    const num = parseFloat(m[0]);
+    return { template: String(value), token: m[0], num, isInt: Number.isInteger(num) };
+  }, [value]);
+  const [display, setDisplay] = useState(parsed ? parsed.template.replace(parsed.token, "0") : value);
 
   useEffect(() => {
-    if (num === null || !inView) return;
+    if (!parsed || !inView) return;
+    const { template, token, num, isInt } = parsed;
     const controls = animate(0, num, {
       duration: 1.5,
       ease: [0.22, 1, 0.36, 1],
       onUpdate: (v) =>
-        setDisplay(
-          template.replace(match[0], Number.isInteger(num) ? String(Math.round(v)) : v.toFixed(1))
-        ),
+        setDisplay(template.replace(token, isInt ? String(Math.round(v)) : v.toFixed(1))),
+      onComplete: () => setDisplay(template),
     });
     return () => controls.stop();
-  }, [inView, num, template, match]);
+  }, [inView, parsed]);
 
   return <span ref={ref}>{display}</span>;
 };

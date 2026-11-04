@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#F9F7F1] text-[#121212]" id="top">
+    <div className="relative min-h-screen bg-paper text-ink" id="top">
       <div className="paper-grain" aria-hidden="true" />
       <PaperPlaneLayer />
       <Masthead />

@@ -27,11 +27,11 @@ export default function About() {
           className="font-heading font-black leading-[1.02] tracking-tight text-3xl sm:text-5xl lg:text-6xl mt-3"
         />
         <Reveal delay={0.25}>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 border-y border-[#121212] py-2">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 border-y border-ink py-2">
             <p className="font-kicker font-bold uppercase tracking-[0.18em] text-[11px] sm:text-xs">
               By the Special Correspondent — <span className="text-azure">{PERSON.name}</span>
             </p>
-            <p className="font-mono-np uppercase tracking-widest text-[9px] sm:text-[10px] text-neutral-600">
+            <p className="font-mono-np uppercase tracking-widest text-[9px] sm:text-[10px] text-ink-soft">
               {PERSON.school}
             </p>
           </div>
@@ -39,23 +39,23 @@ export default function About() {
 
         {/* Recruiter-first: the numbers that matter, before anything else */}
         <Reveal delay={0.3}>
-          <div className="mt-8 border-2 border-[#121212] bg-white transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F] hover:-translate-y-1" data-testid="key-highlights">
-            <div className="flex items-center gap-2 border-b-2 border-[#121212] bg-azure text-[#F9F7F1] px-4 py-2">
+          <div className="mt-8 border-2 border-ink bg-card transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F] hover:-translate-y-1" data-testid="key-highlights">
+            <div className="flex items-center gap-2 border-b-2 border-ink bg-azure text-paper px-4 py-2">
               <span className="font-kicker font-bold uppercase tracking-[0.25em] text-[10px] sm:text-[11px]">
                 Why this correspondent matters — by the numbers
               </span>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#121212]">
+            <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ink">
               {HIGHLIGHTS.map((h, i) => (
                 <div
                   key={i}
                   data-testid={`highlight-stat-${i}`}
-                  className="p-4 sm:p-5 transition-all duration-300 hover:bg-[#F3EFE6] cursor-default"
+                  className="p-4 sm:p-5 transition-all duration-300 hover:bg-paper2 cursor-default"
                 >
                   <p className="font-heading font-black text-3xl sm:text-4xl text-azure leading-none">
                     <CountUp value={h.value} />
                   </p>
-                  <p className="font-body text-[13px] leading-snug mt-2 text-neutral-800">{h.label}</p>
+                  <p className="font-body text-[13px] leading-snug mt-2 text-ink">{h.label}</p>
                 </div>
               ))}
             </div>
@@ -66,7 +66,7 @@ export default function About() {
           {/* Portrait column */}
           <Reveal className="lg:col-span-4" delay={0.1}>
             <figure>
-              <div className="halftone border border-[#121212] transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F]" data-testid="portrait-figure">
+              <div className="halftone border border-ink transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F]" data-testid="portrait-figure">
                 <motion.img
                   src={PERSON.portrait}
                   alt={`Portrait of ${PERSON.name}`}
@@ -75,18 +75,18 @@ export default function About() {
                   loading="eager"
                 />
               </div>
-              <figcaption className="font-mono-np text-[9px] sm:text-[10px] uppercase tracking-widest text-neutral-600 mt-2 leading-relaxed">
+              <figcaption className="font-mono-np text-[9px] sm:text-[10px] uppercase tracking-widest text-ink-soft mt-2 leading-relaxed">
                 <span className="text-azure">FIG 1.1</span> — Placeholder portrait: swap in your own photograph.
               </figcaption>
             </figure>
-            <div className="border-2 border-[#121212] mt-6 p-4 bg-white transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F] hover:-translate-y-0.5" data-testid="at-a-glance">
-              <p className="font-kicker font-bold uppercase tracking-[0.25em] text-xs border-b border-[#121212] pb-2 mb-3">
+            <div className="border-2 border-ink mt-6 p-4 bg-card transition-all duration-300 hover:shadow-[8px_8px_0_#1A5D8F] hover:-translate-y-0.5" data-testid="at-a-glance">
+              <p className="font-kicker font-bold uppercase tracking-[0.25em] text-xs border-b border-ink pb-2 mb-3">
                 At a Glance
               </p>
               <dl className="space-y-3">
                 {AT_A_GLANCE.map(([k, v]) => (
                   <div key={k} className="transition-transform duration-200 hover:translate-x-1">
-                    <dt className="font-mono-np text-[9px] uppercase tracking-widest text-neutral-500">{k}</dt>
+                    <dt className="font-mono-np text-[9px] uppercase tracking-widest text-ink-soft">{k}</dt>
                     <dd className={`font-body text-sm leading-snug ${k === "STATUS" ? "font-bold text-azure uppercase tracking-wide" : ""}`}>
                       {v}
                     </dd>
@@ -102,7 +102,7 @@ export default function About() {
               <Reveal key={i} delay={0.12 * i} className="break-inside-avoid mb-6">
                 <Rich
                   text={p}
-                  className={`font-body text-base sm:text-lg leading-relaxed justify-editorial text-neutral-900 ${i === 0 ? "dropcap" : ""}`}
+                  className={`font-body text-base sm:text-lg leading-relaxed justify-editorial text-ink ${i === 0 ? "dropcap" : ""}`}
                 />
               </Reveal>
             ))}

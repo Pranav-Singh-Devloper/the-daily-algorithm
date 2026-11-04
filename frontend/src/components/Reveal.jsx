@@ -62,6 +62,6 @@ export const SectionHeading = ({ kicker, title, rule = true }) => (
       className="font-heading font-black uppercase text-2xl sm:text-4xl lg:text-5xl tracking-tight mt-2"
       stagger={0.05}
     />
-    {rule && <div className="mt-4 h-[2px] bg-[#121212]" />}
+    {rule && <div className="mt-4 h-[2px] bg-ink" />}
   </div>
 );

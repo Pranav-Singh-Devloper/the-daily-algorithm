@@ -1,5 +1,6 @@
 import { TODAY_LINE } from "@/utils/date";
 import { TICKER_ITEMS, NAV_LINKS } from "@/data/content";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const scrollTo = (id) => (e) => {
   e.preventDefault();
@@ -14,7 +15,7 @@ const NavLink = ({ id, label }) => (
     href={`#${id}`}
     data-testid={`nav-link-${id}`}
     onClick={scrollTo(id)}
-    className="font-kicker font-bold uppercase tracking-[0.22em] text-[11px] sm:text-xs text-neutral-800 hover:bg-azure hover:text-[#F9F7F1] transition-colors duration-200 px-2 py-1"
+    className="font-kicker font-bold uppercase tracking-[0.22em] text-[11px] sm:text-xs text-ink hover:bg-azure hover:text-paper transition-colors duration-200 px-2 py-1"
   >
     {label}
   </a>
@@ -24,12 +25,15 @@ export default function Masthead() {
   return (
     <header className="relative z-10 px-4 sm:px-8 pt-5" data-testid="masthead">
       {/* Dateline */}
-      <div className="flex items-center justify-between border-b border-[#121212] pb-2 font-mono-np text-[9px] sm:text-[11px] uppercase tracking-widest text-neutral-700">
+      <div className="flex items-center justify-between border-b border-ink pb-2 font-mono-np text-[9px] sm:text-[11px] uppercase tracking-widest text-ink-soft">
         <span>Vol. I · No. 1</span>
         <span className="hidden sm:inline">{TODAY_LINE}</span>
-        <span>Price: One Offer</span>
+        <span className="flex items-center gap-3">
+          <span>Price: One Offer</span>
+          <ThemeToggle />
+        </span>
       </div>
-      <div className="sm:hidden text-center font-mono-np text-[9px] uppercase tracking-widest text-neutral-600 pt-1">
+      <div className="sm:hidden text-center font-mono-np text-[9px] uppercase tracking-widest text-ink-soft pt-1">
         {TODAY_LINE}
       </div>
 
@@ -49,7 +53,7 @@ export default function Masthead() {
       </div>
 
       {/* Nav */}
-      <nav className="mt-4 border-y-2 border-[#121212] py-2 flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
+      <nav className="mt-4 border-y-2 border-ink py-2 flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
         {NAV_LINKS.map((l) => (
           <NavLink key={l.id} {...l} />
         ))}
@@ -57,7 +61,7 @@ export default function Masthead() {
 
       {/* Ticker */}
       <div
-        className="mt-0 border-b border-[#121212] overflow-hidden bg-azure text-[#F9F7F1]"
+        className="np-ticker mt-0 border-b border-ink overflow-hidden bg-azure text-paper"
         data-testid="news-ticker"
       >
         <div className="np-ticker-track py-1.5">
