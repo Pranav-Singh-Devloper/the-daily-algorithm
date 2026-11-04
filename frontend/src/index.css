@@ -107,10 +107,10 @@ body {
   opacity: 0.35;
 }
 
-/* Night press: photos become light-print on dark ink */
+/* Night press: photos printed light-on-dark — black backgrounds melt into the card */
 .night .halftone img {
   mix-blend-mode: screen;
-  filter: grayscale(1) invert(0.92) contrast(1.06) brightness(0.9);
+  filter: grayscale(1) contrast(1.12) brightness(1.06);
 }
 .night .halftone::after {
   background-image: radial-gradient(rgba(232, 228, 216, 0.25) 0.6px, transparent 1.1px);
