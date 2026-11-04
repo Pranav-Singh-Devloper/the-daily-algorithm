@@ -83,3 +83,16 @@ android-sdk/
 
 # overlay black-box crash/user-report dumps — session data, never history
 **/.emergent/recordings/
+
+# Secrets — never commit
+.env
+.env.*
+backend/.env
+frontend/.env
+!.env.example
+
+# Platform session data
+.emergent/
+
+# Public audio source (large) — keep only the trimmed loop
+/frontend/public/audio/*.mp3

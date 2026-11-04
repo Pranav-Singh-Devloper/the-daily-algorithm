@@ -51,24 +51,36 @@ export default function PenCursor() {
     <>
       <motion.div className="fixed left-0 top-0 z-[90] pointer-events-none" style={{ x: sx, y: sy }}>
         <motion.div
-          style={{ marginLeft: -14, marginTop: -30, transformOrigin: "14px 30px", rotate: -35 }}
+          style={{ marginLeft: -20, marginTop: -46, transformOrigin: "20px 46px", rotate: -32 }}
           animate={{
             scale: press ? 0.85 : hot ? 1.15 : 1,
             opacity: dim ? 0.2 : 1,
-            rotate: press ? -30 : -35,
+            rotate: press ? -27 : -32,
           }}
           transition={{ type: "spring", stiffness: 420, damping: 24 }}
         >
-          <svg width="28" height="32" viewBox="0 0 28 32" fill="none" style={{ display: "block" }}>
+          <svg
+            width="40"
+            height="48"
+            viewBox="0 0 40 48"
+            fill="none"
+            style={{ display: "block", filter: "drop-shadow(0 1px 2px rgba(18,18,18,0.28))" }}
+          >
+            {/* nib body — upright, curved shoulders, tip at (20,46) */}
             <path
-              d="M14 31 L3 7 Q14 0.5 25 7 Z"
+              d="M20 46 L7.5 12 Q11.5 4.5 20 4.5 Q28.5 4.5 32.5 12 Z"
               fill="var(--ink)"
               stroke="var(--paper)"
-              strokeWidth="1.2"
+              strokeWidth="1.1"
               strokeLinejoin="round"
             />
-            <circle cx="14" cy="11" r="2" fill="var(--paper)" />
-            <line x1="14" y1="13.5" x2="14" y2="22" stroke="var(--paper)" strokeWidth="1.2" />
+            {/* sheen along the left shoulder */}
+            <path d="M11 13 Q14 8 18.5 6.5" stroke="var(--paper)" strokeWidth="1" opacity="0.4" fill="none" />
+            {/* breather hole + slit */}
+            <circle cx="20" cy="18" r="2.4" fill="var(--paper)" />
+            <line x1="20" y1="21" x2="20" y2="34" stroke="var(--paper)" strokeWidth="1.3" />
+            {/* base fold where nib meets the (hidden) grip */}
+            <rect x="11" y="9.5" width="18" height="2" rx="1" fill="var(--azure)" transform="rotate(0 20 10)" />
           </svg>
         </motion.div>
       </motion.div>
