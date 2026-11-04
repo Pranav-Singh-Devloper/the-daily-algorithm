@@ -21,7 +21,7 @@ const NavLink = ({ id, label }) => (
   </a>
 );
 
-export default function Masthead() {
+export default function Masthead({ onNoBs }) {
   return (
     <header className="relative z-10 px-4 sm:px-8 pt-5" data-testid="masthead">
       {/* Dateline */}
@@ -31,6 +31,15 @@ export default function Masthead() {
         <span className="flex items-center gap-3">
           <span>Price: One Offer</span>
           <ThemeToggle />
+          <button
+            type="button"
+            onClick={onNoBs}
+            data-testid="nobs-toggle-button"
+            title="Skip the theatre — plain portfolio"
+            className="font-mono-np text-[9px] uppercase tracking-widest border border-ink px-2 py-0.5 hover:bg-ink hover:text-paper transition-colors duration-200 cursor-pointer"
+          >
+            No BS
+          </button>
         </span>
       </div>
       <div className="sm:hidden text-center font-mono-np text-[9px] uppercase tracking-widest text-ink-soft pt-1">
