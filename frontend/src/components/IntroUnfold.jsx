@@ -73,13 +73,8 @@ export default function IntroUnfold() {
         {[0, 1, 2, 3].map((i) => (
           <motion.div
             key={i}
-            className="flex-1 bg-paper"
-            style={{
-              transformOrigin: i < 2 ? "right center" : "left center",
-              boxShadow: "inset 0 0 40px rgba(18,18,18,0.10)",
-              borderRight: i === 1 ? "1px dashed rgba(18,18,18,0.15)" : undefined,
-              borderLeft: i === 2 ? "1px dashed rgba(18,18,18,0.15)" : undefined,
-            }}
+            className={`flex-1 bg-paper intro-panel ${i === 1 ? "gap-l" : i === 2 ? "gap-r" : ""}`}
+            style={{ transformOrigin: i < 2 ? "right center" : "left center" }}
             initial={{ rotateY: i < 2 ? -86 : 86, opacity: 0.95 }}
             animate={{ rotateY: 0, opacity: 1 }}
             transition={{ duration: 1.0, delay: DELAYS[i], ease: [0.22, 1, 0.36, 1] }}

@@ -209,7 +209,7 @@ export default function PaperPlaneLayer() {
           ref={basePathRef}
           d={path}
           stroke="var(--ink)"
-          strokeOpacity="0.22"
+          className="np-trail-base"
           strokeWidth="1.4"
           strokeDasharray="2 9"
           strokeLinecap="round"
@@ -217,9 +217,10 @@ export default function PaperPlaneLayer() {
         <motion.path
           d={path}
           stroke="var(--ink)"
+          className="np-trail"
           strokeWidth="1.7"
           strokeLinecap="round"
-          style={{ pathLength: trailLength, opacity: 0.5 }}
+          style={{ pathLength: trailLength }}
         />
       </svg>
 
