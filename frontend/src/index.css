@@ -276,6 +276,27 @@ body {
   border-left-color: rgba(232, 228, 216, 0.18);
 }
 
+/* ---- Ambient jazz equalizer indicator ---- */
+.eq-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 10px;
+}
+.eq-bars i {
+  width: 2px;
+  background: currentColor;
+  transform-origin: bottom;
+  animation: eq 0.9s ease-in-out infinite;
+}
+.eq-bars i:nth-child(1) { height: 60%; animation-delay: 0s; }
+.eq-bars i:nth-child(2) { height: 100%; animation-delay: 0.25s; }
+.eq-bars i:nth-child(3) { height: 40%; animation-delay: 0.5s; }
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
+}
+
 /* ---- Print: only the Résumé Snapshot reaches the paper, always day edition ---- */
 @media print {
   :root,

@@ -1,6 +1,7 @@
 import { TODAY_LINE } from "@/utils/date";
 import { TICKER_ITEMS, NAV_LINKS } from "@/data/content";
 import ThemeToggle from "@/components/ThemeToggle";
+import AmbientAudio from "@/components/AmbientAudio";
 
 const scrollTo = (id) => (e) => {
   e.preventDefault();
@@ -30,6 +31,7 @@ export default function Masthead({ onNoBs }) {
         <span className="hidden sm:inline">{TODAY_LINE}</span>
         <span className="flex items-center gap-3">
           <span>Price: One Offer</span>
+          <AmbientAudio />
           <ThemeToggle />
           <span className="relative group flex">
             <button

@@ -1,4 +1,5 @@
 import { PERSON, HIGHLIGHTS, EXPERIENCES, PROJECTS, SKILLS, ACHIEVEMENTS, EDUCATION } from "@/data/content";
+import AmbientAudio from "@/components/AmbientAudio";
 
 const strip = (s) => s.replace(/##/g, "");
 
@@ -53,6 +54,10 @@ export default function NoBS({ onExit }) {
           >
             Theatrics on →
           </button>
+        </div>
+
+        <div className="mt-4">
+          <AmbientAudio />
         </div>
 
         {/* Contact */}
