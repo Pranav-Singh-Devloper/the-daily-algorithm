@@ -15,7 +15,7 @@ export default function Experiences() {
               className={`border-ink ${i < EXPERIENCES.length - 1 ? "md:border-r border-b md:border-b-0" : ""}`}
               testid={`experience-card-${i}`}
             >
-              <div className="h-full p-5 sm:p-7 bg-transparent transition-all duration-300 hover:bg-card hover:-translate-y-1 hover:shadow-[8px_8px_0_#1A5D8F] cursor-default">
+              <div className="h-full p-5 sm:p-7 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_0_#1A5D8F] cursor-default">
                 <p className="font-kicker font-bold uppercase tracking-[0.22em] text-[10px] text-ink-soft">
                   Situation Wanted · No. {i + 1}
                 </p>

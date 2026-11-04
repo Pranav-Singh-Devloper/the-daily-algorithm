@@ -8,7 +8,7 @@ export default function Achievements() {
       <div className="max-w-4xl mx-auto">
         <SectionHeading kicker="Public Notice — Gazette" title="Honours & Distinctions" />
         <div className="border-[3px] border-ink p-1.5 transition-all duration-300 hover:shadow-[10px_10px_0_#1A5D8F] hover:-translate-y-1" data-testid="honours-box">
-          <div className="border border-ink px-5 sm:px-10 py-8 sm:py-10 bg-[#FFFFFF]">
+          <div className="border border-ink px-5 sm:px-10 py-8 sm:py-10 bg-card">
             <p className="text-center font-masthead font-bold uppercase tracking-[0.3em] text-[11px] sm:text-sm mb-8">
               By order of the Editor — the following are hereby recorded
             </p>
